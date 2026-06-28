@@ -1,0 +1,41 @@
+# Configuración pública. Las credenciales no pertenecen aquí.
+api_version = "2026-03-11"
+api_base_url = "https://api.notion.com/v1"
+timeout_seconds = 20
+max_retries = 3
+
+[activities]
+# “Base de datos de trabajo” is a heading; this is the embedded operational source.
+container_page_id = "388bc5d6-9357-8046-bc4f-d8f1e6405c0b"
+database_id = "ff1bc5d6-9357-82e3-9d7b-0121ab4efd73"
+data_source_id = "033bc5d6-9357-83c6-b71e-07d61caa648f"
+title_property = "Titulo"
+category_property = "Category"
+datetime_property = "Date Reported"
+hours_property = "Horas"
+description_property = "Descripcion"
+status_property = "Status"
+project_relation_property = "Proyecto"
+
+[projects]
+database_id = "d0d752eb-27f7-4733-a4fb-342db85ab9bb"
+data_source_id = "c36049cf-9d28-4999-8f0a-f0e15deaa8b4"
+title_property = "Nombre"
+status_property = "Estado"
+scope_property = "Ámbito"
+owner_property = "Responsable"
+start_property = "Inicio"
+end_property = "Fin"
+objective_property = "Objetivo"
+repository_property = "Repositorio"
+obsidian_property = "Obsidian"
+session_date_property = "Fecha sesión"
+challenge_property = "Reto o compromiso"
+resolved_property = "Resuelto"
+summary_property = "Resumen"
+version_property = "Versión"
+git_tag_property = "Tag Git"
+git_commit_property = "Commit Git"
+
+[obsidian]
+vault_path = "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro"

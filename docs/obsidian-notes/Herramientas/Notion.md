@@ -1,0 +1,34 @@
+# Notion
+
+[[Notion]] es la fuente de verdad transaccional de [[Sistema de Trazabilidad]].
+
+Almacena actividades, categorías, prioridades, horas, estado, proyecto, fecha,
+responsable y reportes. La documentación extensa permanece en [[Obsidian]] y se enlaza.
+
+La integración inicial solo verifica conexión y descubre fuentes de datos. El secreto
+no debe aparecer en esta bóveda, registros ni control de versiones.
+
+## Fuente de actividades
+
+En la página principal, **Base de datos de trabajo** es el encabezado de la base
+incrustada **Reporte de Tickets**.
+
+- `data_source_id`: `033bc5d6-9357-83c6-b71e-07d61caa648f`
+- Actividad: `Titulo`
+- Categoría: `Category`
+- Fecha y hora: `Date Reported`
+- Horas invertidas: `Horas`
+- Descripción: `Descripcion`
+- Estado: `Status`
+
+Este ID es la referencia canónica. No seleccionar destinos únicamente por nombre.
+
+## Fuente de sesiones por proyecto
+
+La base **Proyectos** usa el `data_source_id`
+`c36049cf-9d28-4999-8f0a-f0e15deaa8b4`.
+
+Cada cierre crea una fila nueva. `Nombre` siempre es el nombre de la carpeta raíz y
+puede repetirse. La fila registra `Fecha sesión`, `Reto o compromiso`, `Resuelto`,
+`Resumen`, `Versión`, `Tag Git` y `Commit Git`. Está relacionada con las actividades
+mediante `Proyecto` ↔ `Actividades`.
