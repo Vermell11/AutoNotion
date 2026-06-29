@@ -40,12 +40,24 @@ bidireccionalmente con las actividades mediante `Proyecto` ↔ `Actividades`.
 
 - Database ID: `d0d752eb-27f7-4733-a4fb-342db85ab9bb`
 - Data source ID: `c36049cf-9d28-4999-8f0a-f0e15deaa8b4`
-- Campos: `Nombre`, `Estado`, `Ámbito`, `Responsable`, `Inicio`, `Fin`, `Objetivo`,
-  `Repositorio` y `Obsidian`.
+- Campos de cierre: `Nombre`, `Estado`, `Ámbito`, `Inicio`, `Fin`, `Fecha sesión`,
+  `Duración minutos`, `Horas`, `Reto o compromiso`, `Resuelto`, `Resumen`, `Versión`,
+  `Tag Git`, `Commit Git`, `Repositorio` y `Obsidian`.
 
 `Nombre` siempre procede de la carpeta raíz y puede repetirse. La identidad de una
 sesión la forman su página, fecha, versión y commit; nunca se deduplica solo por nombre.
 Cada cierre registra reto, resolución, resumen y evidencia Git.
+
+## Política de lectura y escritura
+
+- Codex y Claude Code no leen Notion para reconstruir contexto normal.
+- El contexto narrativo se obtiene de Obsidian y el técnico de Graphify.
+- Notion se escribe al cerrar una sesión y se consulta para reportes, reconciliación o
+  acceso explícito por API.
+- `Inicio` y `Fin` llevan zona horaria.
+- `Duración minutos` conserva precisión operativa y `Horas` presenta el decimal
+  redondeado para dashboards.
+- El resumen de Notion es conciso y enlaza la memoria detallada de Obsidian.
 
 ## Modelo propuesto para Fase 2
 
@@ -70,7 +82,8 @@ Los reportes deben ser vistas o consumidores de estas fuentes, no copias de dato
 ## Reglas
 
 - Identificadores de fuentes en configuración local, nunca incrustados en lógica.
-- Operaciones de escritura idempotentes con una clave externa.
+- Creaciones no idempotentes no se reintentan automáticamente; una fase futura debe
+  añadir claves externas de idempotencia.
 - Confirmación humana antes de registrar una actividad durante la siguiente fase.
 - Fechas almacenadas con zona horaria explícita; horas como duración, no texto.
 - Descubrimiento no implica permisos de escritura.

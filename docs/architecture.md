@@ -9,26 +9,28 @@
 | Graphify | relaciones técnicas derivadas | decisiones o hechos no presentes en fuentes |
 | Este repositorio | adaptadores, contratos y operación | convertirse en una cuarta fuente de verdad |
 
-## Flujo de Fase 1
+## Flujo operativo
 
 ```text
 key.txt / NOTION_API_KEY
           |
           v
-config -> NotionClient -> API Notion (lectura: identidad y descubrimiento)
+config -> NotionClient -> API Notion (lectura y cierres estructurados)
 
-docs del repositorio <----alineación manual----> bóveda Cerebro
+AGENTS / CLAUDE -> PROJECT_CONTEXT -> Obsidian -> Graphify -> código
 
-repositorios --(futuro: extract/update)--> graphify-out --(consulta)--> agentes
+fin de sesión -> Obsidian -> Graphify update -> Git tag -> fila Notion
 ```
 
-No existe aún escritura en Notion, sincronización, disparador por cambios ni tarea
-programada. Esa ausencia es deliberada para mantener el sistema auditable.
+Notion no participa en la lectura rutinaria de contexto por IA. Conserva métricas,
+sesiones y datos compartibles por API. No existen aún sincronización automática,
+disparadores por cambios, reportes ni tareas programadas.
 
 ## Capas
 
 - `config.py`: resolución de credenciales y valores operativos.
 - `notion_client.py`: transporte, reintentos, errores y paginación.
+- `session.py`: duración determinista entre timestamps con zona horaria.
 - `cli.py`: interfaz humana y salida apta para automatización futura.
 - `scripts/`: ejecución desde el checkout.
 - `tests/`: contratos sin llamadas reales.

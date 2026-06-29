@@ -1,5 +1,8 @@
 # Sistema de Trazabilidad
 
+> Esta nota se conserva como entrada histórica. El proyecto activo vive en
+> [[Proyectos/Notion/Resumen]].
+
 ## Propósito
 
 Centralizar medición en [[Notion]], conocimiento humano en [[Obsidian]] y contexto

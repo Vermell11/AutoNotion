@@ -5,10 +5,8 @@ repositorio `Notion` se completó el 2026-06-28.
 
 ## Estado del grafo
 
-- Corpus: 27 archivos y aproximadamente 6.226 palabras.
-- Código: 9 archivos; documentación: 18 archivos.
-- Resultado final tras actualización incremental: 188 nodos, 273 aristas y
-  18 comunidades.
+- El tamaño y las comunidades cambian con cada actualización; consultar
+  `GRAPH_REPORT.md` para las métricas vigentes.
 - Salidas locales: `graphify-out/graph.json`, `graph.html` y `GRAPH_REPORT.md`.
 - Costo semántico externo: 0 tokens; la documentación se extrajo localmente.
 
@@ -41,9 +39,8 @@ incrementales en varios cambios reales.
   defecto: produce ruido y mezcla conocimiento derivado con curado.
 - **Codex:** `AGENTS.md` ordena consultar `graphify-out/graph.json` cuando exista para
   preguntas de arquitectura; reconstruir solo por solicitud o política explícita.
-- **Claude Code:** añadir una sección equivalente a `CLAUDE.md` en cada repositorio,
-  con comandos de consulta, raíz del grafo y prohibición de inferir hechos fuera del
-  grafo. Hacerlo en Fase 2, al validar la instalación.
+- **Claude Code:** `CLAUDE.md` apunta a `AGENTS.md` y `PROJECT_CONTEXT.md`, y exige
+  consultar el grafo existente antes de reconstruirlo.
 
 ## Política de actualización propuesta
 

@@ -29,6 +29,10 @@ La base **Proyectos** usa el `data_source_id`
 `c36049cf-9d28-4999-8f0a-f0e15deaa8b4`.
 
 Cada cierre crea una fila nueva. `Nombre` siempre es el nombre de la carpeta raíz y
-puede repetirse. La fila registra `Fecha sesión`, `Reto o compromiso`, `Resuelto`,
-`Resumen`, `Versión`, `Tag Git` y `Commit Git`. Está relacionada con las actividades
-mediante `Proyecto` ↔ `Actividades`.
+puede repetirse. La fila registra `Inicio`, `Fin`, `Duración minutos`, `Horas`,
+`Fecha sesión`, `Reto o compromiso`, `Resuelto`, `Resumen`, `Versión`, `Tag Git` y
+`Commit Git`. Está relacionada con las actividades mediante `Proyecto` ↔ `Actividades`.
+
+Codex y Claude Code no leen Notion para reconstruir contexto rutinario. La memoria vive
+en [[Obsidian]] y el contexto técnico en [[Graphify]]. Notion es la capa de métricas,
+reportes y exposición estructurada por API.

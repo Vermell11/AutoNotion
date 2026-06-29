@@ -5,8 +5,10 @@ en Obsidian y contexto técnico derivado en Graphify.
 
 ## Estado
 
-Fase 1: arquitectura, seguridad, cliente de lectura para Notion y documentación.
-No incluye sincronización, reportes, correo ni tareas programadas.
+Versión V1.1. El cliente soporta lectura y escritura
+controlada en Notion, documentación por proyecto en Obsidian, Graphify y continuidad
+entre Codex y Claude Code. No incluye sincronización, reportes, correo ni tareas
+programadas.
 
 ## Inicio rápido
 
@@ -38,7 +40,8 @@ public/apikey/          compatibilidad local; ignorado por Git
 ```
 
 Las decisiones y estrategias están en [docs/](docs/README.md). Las reglas para agentes
-están en [AGENTS.md](AGENTS.md).
+están en [AGENTS.md](AGENTS.md). Toda IA debe comenzar por
+[PROJECT_CONTEXT.md](PROJECT_CONTEXT.md).
 
 ## Versionado
 

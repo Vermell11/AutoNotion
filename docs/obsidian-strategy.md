@@ -4,9 +4,13 @@ La bóveda `Cerebro` es la única autoridad para conocimiento humano. Este repos
 conserva documentación operativa cercana al código, pero las decisiones, reuniones,
 lecciones y contexto durable deben terminar en Obsidian.
 
-## Taxonomía inicial
+## Arquitectura orientada por proyecto
 
-- `Proyectos/`: páginas índice y contexto activo.
+- `Proyectos/<Proyecto>/Resumen.md`: propósito, navegación y versión actual.
+- `Proyectos/<Proyecto>/Estado actual.md`: capacidades y brechas al objetivo final.
+- `Proyectos/<Proyecto>/Sesiones/`: memoria cronológica detallada.
+- `Proyectos/<Proyecto>/Arquitectura/`: arquitectura durable.
+- `Proyectos/<Proyecto>/Decisiones/`: índice o decisiones propias del proyecto.
 - `Herramientas/`: contratos, límites y forma de uso.
 - `Decisiones/`: una nota fechada por decisión relevante.
 - `Plantillas/`: prompts reutilizables para proyectos nuevos y migraciones.
@@ -22,3 +26,5 @@ Usar enlaces estables por nombre: `[[Sistema de Trazabilidad]]`, `[[Notion]]`,
 - Mantener notas atómicas de herramientas y enlazarlas desde proyectos.
 - No volcar automáticamente todo cambio de código: registrar solo contexto útil.
 - Revisar alineación documental al cerrar cada cambio relevante.
+- Actualizar primero la sesión y el estado del proyecto; Notion recibe solo el resumen
+  estructurado y las métricas.

@@ -16,10 +16,14 @@ Funcionan con Codex y Claude Code.
 ## Reglas comunes
 
 - Sustituir los campos entre corchetes por el contexto real.
-- Toda escritura en [[Notion]] requiere confirmación humana.
+- La IA reconstruye contexto desde `PROJECT_CONTEXT.md`, [[Obsidian]] y [[Graphify]],
+  no desde [[Notion]].
+- Notion se usa para cierres, métricas, reportes y exposición por API.
 - Al inicio se acuerda un reto verificable; al cierre se crea una fila nueva de sesión
-  en Notion y se marca si fue resuelto.
+  con inicio, fin, duración, horas y resultado.
 - Cada versión cerrada lleva un tag Git anotado; la primera es `V1.0`.
+- Cada proyecto usa `Proyectos/<Proyecto>/Resumen.md`, `Estado actual.md`, `Sesiones/`,
+  `Decisiones/` y `Arquitectura/`.
 - [[Obsidian]] conserva el contexto y las decisiones humanas.
 - [[Graphify]] conserva relaciones técnicas derivadas y no se ejecuta sin autorización.
 - Nunca incluir secretos en prompts, notas, logs ni control de versiones.

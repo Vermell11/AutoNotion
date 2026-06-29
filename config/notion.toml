@@ -36,6 +36,8 @@ summary_property = "Resumen"
 version_property = "Versión"
 git_tag_property = "Tag Git"
 git_commit_property = "Commit Git"
+duration_minutes_property = "Duración minutos"
+hours_property = "Horas"
 
 [obsidian]
 vault_path = "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro"

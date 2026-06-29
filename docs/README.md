@@ -1,6 +1,7 @@
 # Documentación
 
 - [Arquitectura](architecture.md)
+- [Estado actual y avance](current-state.md)
 - [Seguridad](security.md)
 - [Estrategia de Notion](notion-strategy.md)
 - [Estrategia de Obsidian](obsidian-strategy.md)
@@ -9,6 +10,7 @@
 - [Publicación segura en Git](git-publishing.md)
 - [ADR-001: arquitectura inicial](decisions/ADR-001-arquitectura-inicial.md)
 - [ADR-002: trazabilidad por sesiones](decisions/ADR-002-trazabilidad-por-sesiones.md)
+- [ADR-003: contexto de IA por proyecto](decisions/ADR-003-contexto-ia-por-proyecto.md)
 
 La bóveda de Obsidian es la fuente de verdad para conocimiento humano. Estos documentos
 son especificaciones cercanas al código y deben mantenerse alineados con sus notas.
