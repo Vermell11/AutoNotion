@@ -13,7 +13,7 @@ métricas, reportes y acceso por API.
 
 El orden de lectura es:
 
-`AGENTS/CLAUDE → PROJECT_CONTEXT → Obsidian → Graphify → código`
+`AGENTS/CLAUDE → PROJECT_CONTEXT → reglas globales → reglas del proyecto → resumen + última sesión + En curso → Graphify → código`
 
 ## Consecuencias
 

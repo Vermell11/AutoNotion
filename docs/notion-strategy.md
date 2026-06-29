@@ -52,11 +52,18 @@ Cada cierre registra reto, resolución, resumen y evidencia Git.
 
 - Codex y Claude Code no leen Notion para reconstruir contexto normal.
 - El contexto narrativo se obtiene de Obsidian y el técnico de Graphify.
-- Notion se escribe al cerrar una sesión y se consulta para reportes, reconciliación o
-  acceso explícito por API.
+- Completar una tarea, resolver el reto o pausar el trabajo no cierra la sesión.
+- La IA espera a que el usuario diga explícitamente cuándo desea cerrar o cargar lo
+  realizado. Solo entonces muestra un borrador con reto, resultado, resumen, tiempos,
+  versión y evidencia Git, y pregunta si confirma cerrar y registrar en Notion.
+- Sin una respuesta afirmativa inequívoca, la sesión permanece abierta y no se crea ni
+  actualiza ninguna fila de sesión.
+- Tras la confirmación, Notion se escribe una sola vez. Se consulta para reportes,
+  reconciliación o acceso explícito por API.
 - `Inicio` y `Fin` llevan zona horaria.
-- `Duración minutos` conserva precisión operativa y `Horas` presenta el decimal
-  redondeado para dashboards.
+- `Duración minutos` conserva el trabajo activo y `Horas` presenta su decimal
+  redondeado para dashboards. Las pausas prolongadas se documentan y excluyen; inicio
+  y fin conservan el tiempo de pared para auditoría.
 - El resumen de Notion es conciso y enlaza la memoria detallada de Obsidian.
 
 ## Modelo propuesto para Fase 2

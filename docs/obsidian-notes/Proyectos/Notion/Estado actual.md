@@ -9,6 +9,10 @@
 - Ledger de sesiones y relación con actividades.
 - Cálculo de duración con timestamps y zona horaria.
 - Documentación en [[Obsidian]], grafo [[Graphify]] y versionado Git.
+- Reglas globales y locales separadas, con continuidad mediante una nota de sesión en
+  curso y sesiones cerradas.
+- Cierre humano asistido: la IA espera la orden del usuario, presenta el borrador y
+  solicita confirmación antes de escribir en [[Notion]].
 
 ## Qué todavía no hace
 
@@ -27,5 +31,6 @@ flujo confirmado de actividades.
 ## Referencias
 
 - [[Proyectos/Notion/Resumen]]
+- [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
-- [[Proyectos/Notion/Sesiones/2026-06-28 - V1.0]]
+- [[Proyectos/Notion/Sesiones/2026-06-29 - V1.2]]

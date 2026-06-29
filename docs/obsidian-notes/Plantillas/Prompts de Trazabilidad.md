@@ -7,6 +7,7 @@ Funcionan con Codex y Claude Code.
 
 - [[Prompt - Integrar proyecto nuevo al Sistema de Trazabilidad]]
 - [[Prompt - Migrar proyecto existente al Sistema de Trazabilidad]]
+- [[Plantilla - Sesión de proyecto]]
 
 ## Copias en Notion
 
@@ -16,14 +17,24 @@ Funcionan con Codex y Claude Code.
 ## Reglas comunes
 
 - Sustituir los campos entre corchetes por el contexto real.
-- La IA reconstruye contexto desde `PROJECT_CONTEXT.md`, [[Obsidian]] y [[Graphify]],
-  no desde [[Notion]].
+- [[Reglas globales del Sistema de Trazabilidad]] aplica a todos los proyectos;
+  `Proyectos/<Proyecto>/Reglas.md` contiene solo convenciones locales compatibles.
+- La IA lee `AGENTS.md` o `CLAUDE.md`, consulta `PROJECT_CONTEXT.md` como índice, lee
+  las reglas, el resumen, la última sesión y `Sesiones/En curso.md` en [[Obsidian]], y
+  consulta [[Graphify]].
+- La IA no reconstruye contexto desde [[Notion]].
 - Notion se usa para cierres, métricas, reportes y exposición por API.
-- Al inicio se acuerda un reto verificable; al cierre se crea una fila nueva de sesión
-  con inicio, fin, duración, horas y resultado.
+- Al inicio se acuerda un reto verificable. Terminar una tarea o resolverlo no cierra
+  automáticamente la sesión.
+- La IA espera a que el usuario indique cuándo desea cargar la sesión. Solo entonces
+  muestra el borrador y pregunta si confirma cerrar y registrar en Notion.
+- Sin una respuesta afirmativa inequívoca, la sesión sigue abierta. Tras confirmarla,
+  se crea una sola fila con inicio, fin, duración, horas y resultado.
 - Cada versión cerrada lleva un tag Git anotado; la primera es `V1.0`.
-- Cada proyecto usa `Proyectos/<Proyecto>/Resumen.md`, `Estado actual.md`, `Sesiones/`,
-  `Decisiones/` y `Arquitectura/`.
+- Cada proyecto usa `Proyectos/<Proyecto>/Resumen.md`, `Reglas.md`, `Estado actual.md`,
+  `Sesiones/`, `Decisiones/` y `Arquitectura/`.
+- `Sesiones/En curso.md` conserva resumen, acuerdos, trabajo, evidencia, pendientes y
+  conexiones; al cierre se convierte en la nota fechada de la versión.
 - [[Obsidian]] conserva el contexto y las decisiones humanas.
 - [[Graphify]] conserva relaciones técnicas derivadas y no se ejecuta sin autorización.
 - Nunca incluir secretos en prompts, notas, logs ni control de versiones.

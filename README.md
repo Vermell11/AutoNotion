@@ -5,8 +5,8 @@ en Obsidian y contexto técnico derivado en Graphify.
 
 ## Estado
 
-Versión V1.1. El cliente soporta lectura y escritura
-controlada en Notion, documentación por proyecto en Obsidian, Graphify y continuidad
+Versión V1.2. El cliente soporta lectura y escritura controlada en Notion,
+documentación y memoria de sesiones por proyecto en Obsidian, Graphify y continuidad
 entre Codex y Claude Code. No incluye sincronización, reportes, correo ni tareas
 programadas.
 

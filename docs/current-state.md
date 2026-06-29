@@ -50,6 +50,14 @@ una plataforma automatizada: requiere una IA o persona para ejecutar el cierre, 
 la fila de Notion y mantener Obsidian. El siguiente salto de valor es un flujo
 idempotente de registro de actividades y sesiones, seguido por reportes.
 
+El cierre asistido exige ahora mostrar un borrador y obtener confirmación humana
+explícita. La IA espera a que el usuario indique cuándo desea cargar la sesión;
+resolver una tarea o el reto no autoriza escribir en Notion.
+
+La continuidad durante una sesión abierta se conserva en `Sesiones/En curso.md`. Al
+cierre confirmado se transforma en una nota fechada con resumen, acuerdos, evidencia,
+estado, pendientes y conexiones.
+
 ## Riesgos vigentes
 
 - `key.txt` sigue siendo un fallback local y debe migrarse a llavero o entorno.

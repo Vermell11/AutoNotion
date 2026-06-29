@@ -13,8 +13,10 @@ de entrada portable dentro del repositorio.
 
 - Obsidian conserva propósito, estado actual, arquitectura y sesiones detalladas.
 - Graphify conserva relaciones técnicas derivadas.
-- `PROJECT_CONTEXT.md` es un índice mínimo con punteros, versión y reto; no duplica la
-  documentación.
+- `PROJECT_CONTEXT.md` es un índice mínimo con identidad y punteros; no duplica
+  propósito, estado, reglas, reto ni documentación narrativa.
+- El índice apunta a las reglas globales y a `Proyectos/<Proyecto>/Reglas.md` antes del
+  resumen, la última sesión y `Sesiones/En curso.md` cuando exista.
 - `AGENTS.md` y `CLAUDE.md` exigen el mismo orden de lectura.
 - Notion queda fuera de la lectura rutinaria y recibe el cierre estructurado, métricas y
   datos disponibles por API.

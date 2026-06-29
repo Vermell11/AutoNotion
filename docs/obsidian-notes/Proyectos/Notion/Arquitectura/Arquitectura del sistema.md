@@ -9,24 +9,29 @@
 
 ## Flujo de inicio
 
-`AGENTS.md / CLAUDE.md → PROJECT_CONTEXT.md → Obsidian → Graphify → código`
+`AGENTS.md / CLAUDE.md → PROJECT_CONTEXT.md → reglas globales → reglas del proyecto → resumen + última sesión + En curso → Graphify → código`
 
 Notion queda fuera del flujo normal de lectura.
 
 ## Flujo de cierre
 
-`Obsidian → PROJECT_CONTEXT.md → Graphify update → pruebas → commit/tag → fila Notion`
+`Borrador → confirmación humana → Obsidian → PROJECT_CONTEXT.md → Graphify update → pruebas → commit/tag → fila Notion`
 
 La fila de Notion contiene resumen conciso, reto, resultado, inicio, fin, duración,
 horas, versión, tag y commit. La narrativa completa permanece en la nota de sesión.
+Completar una tarea no activa este flujo; sin confirmación explícita, la sesión sigue
+abierta y no se escribe la fila.
 
 ## Estructura por proyecto
 
 ```text
 Proyectos/Notion/
 ├── Resumen.md
+├── Reglas.md
 ├── Estado actual.md
 ├── Sesiones/
+│   ├── En curso.md
+│   └── <Fecha> - <Versión>.md
 ├── Decisiones/
 └── Arquitectura/
 ```

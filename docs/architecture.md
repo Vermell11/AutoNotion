@@ -17,14 +17,22 @@ key.txt / NOTION_API_KEY
           v
 config -> NotionClient -> API Notion (lectura y cierres estructurados)
 
-AGENTS / CLAUDE -> PROJECT_CONTEXT -> Obsidian -> Graphify -> código
+AGENTS / CLAUDE -> PROJECT_CONTEXT -> reglas globales -> reglas del proyecto
+                  -> resumen + última sesión + En curso -> Graphify -> código
 
-fin de sesión -> Obsidian -> Graphify update -> Git tag -> fila Notion
+propuesta de cierre -> confirmación humana -> Obsidian -> Graphify update
+                  -> Git tag -> fila Notion
 ```
 
 Notion no participa en la lectura rutinaria de contexto por IA. Conserva métricas,
 sesiones y datos compartibles por API. No existen aún sincronización automática,
 disparadores por cambios, reportes ni tareas programadas.
+
+Una tarea completada no activa el cierre. Sin confirmación humana explícita después de
+mostrar el borrador, la sesión sigue abierta y no se escribe su fila en Notion.
+
+Obsidian separa reglas globales de `Proyectos/<Proyecto>/Reglas.md`. Las reglas locales
+especializan el repositorio y no pueden contradecir las globales.
 
 ## Capas
 

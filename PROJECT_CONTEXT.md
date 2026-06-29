@@ -3,23 +3,21 @@
 ## Identity
 
 - Project name: `Notion` (derived from the repository root folder).
-- Current released version: `V1.1`.
+- Current released version: `V1.2`.
 - Repository: https://github.com/Vermell11/AutoNotion
-
-## Ultimate purpose
-
-Provide one personal ecosystem where Notion stores measurable work, Obsidian stores
-human knowledge, Graphify stores derived technical relationships, and AI tools can
-continue safely from the last documented session.
 
 ## Canonical context
 
+- Global rules:
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Reglas/Reglas globales del Sistema de Trazabilidad.md`
+- Project rules:
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Reglas.md`
 - Project summary:
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Resumen.md`
 - Current state:
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Estado actual.md`
 - Last closed session:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Sesiones/2026-06-28 - V1.1.md`
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Sesiones/2026-06-29 - V1.2.md`
 - Architecture:
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Arquitectura/Arquitectura del sistema.md`
 
@@ -30,24 +28,12 @@ continue safely from the last documented session.
 - Interactive graph: `graphify-out/graph.html`
 - Query the existing graph before rebuilding it.
 
-## Notion write targets
-
-- Activities data source: `033bc5d6-9357-83c6-b71e-07d61caa648f`
-- Session ledger (`Proyectos`): `c36049cf-9d28-4999-8f0a-f0e15deaa8b4`
-
-Notion is not part of the normal AI read path. Use it at session close for structured
-metrics or when a human explicitly requests reporting, reconciliation, or API access.
-
-## Next session
-
-Agree a new measurable commitment before making changes. Recommended direction:
-implement an idempotent, reusable session-close command without adding automatic
-synchronization prematurely.
-
 ## Required read order
 
 1. `AGENTS.md` or `CLAUDE.md`.
 2. This file.
-3. Obsidian project summary, current state, and last closed session.
-4. Existing Graphify graph.
-5. Source code and repository documentation relevant to the task.
+3. Obsidian global rules and project rules.
+4. Obsidian project summary, current state, last closed session, and open session when
+   present.
+5. Existing Graphify graph.
+6. Source code and repository documentation relevant to the task.

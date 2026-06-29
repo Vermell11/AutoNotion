@@ -33,6 +33,11 @@ puede repetirse. La fila registra `Inicio`, `Fin`, `Duración minutos`, `Horas`,
 `Fecha sesión`, `Reto o compromiso`, `Resuelto`, `Resumen`, `Versión`, `Tag Git` y
 `Commit Git`. Está relacionada con las actividades mediante `Proyecto` ↔ `Actividades`.
 
+Terminar una tarea o resolver el reto no cierra la sesión. La IA espera a que el
+usuario indique cuándo desea cargarla. Solo entonces muestra el borrador y pregunta
+explícitamente si confirma cerrar y registrar la sesión en Notion. Sin una respuesta
+afirmativa inequívoca, no se crea ni actualiza ninguna fila.
+
 Codex y Claude Code no leen Notion para reconstruir contexto rutinario. La memoria vive
 en [[Obsidian]] y el contexto técnico en [[Graphify]]. Notion es la capa de métricas,
 reportes y exposición estructurada por API.

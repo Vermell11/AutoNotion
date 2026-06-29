@@ -38,11 +38,29 @@ FUENTES DE VERDAD
 - El repositorio: implementación, configuración pública, pruebas y documentación
   operativa cercana al código.
 
+CAPAS DE REGLAS
+- Reglas globales canónicas:
+  `Reglas/Reglas globales del Sistema de Trazabilidad.md` en Obsidian.
+- Reglas locales:
+  `Proyectos/<Proyecto>/Reglas.md` en Obsidian.
+- Las reglas locales pueden especializar el proyecto, pero nunca contradecir las
+  globales. No dupliques las reglas globales dentro del proyecto; enlázalas.
+
+FLUJO OBLIGATORIO DESPUÉS DE LA INTEGRACIÓN
+1. Leer AGENTS.md o CLAUDE.md.
+2. Consultar PROJECT_CONTEXT.md únicamente como índice mínimo.
+3. Seguir sus enlaces y leer en Obsidian las reglas globales, las reglas del proyecto,
+   `Resumen.md`, `Estado actual.md`, la última sesión cerrada y `Sesiones/En curso.md`
+   cuando exista.
+4. Consultar el grafo existente de Graphify antes de inspeccionar el código o proponer
+   una extracción.
+5. No consultar Notion para reconstruir contexto rutinario.
+
 FORMA DE TRABAJO
-0. Toma el nombre del proyecto exclusivamente del nombre de la carpeta raíz. Lee
-   AGENTS.md o CLAUDE.md, PROJECT_CONTEXT.md, el resumen/estado/última sesión de
-   Obsidian y el grafo existente. No consultes Notion para contexto rutinario. Propón
-   un reto verificable y pide confirmación antes de continuar.
+0. Toma el nombre del proyecto exclusivamente del nombre de la carpeta raíz. Durante
+   esta primera integración, lee las reglas globales y cualquier AGENTS.md, CLAUDE.md,
+   PROJECT_CONTEXT.md, documentación de Obsidian o grafo que ya exista. No inventes
+   archivos ausentes. Propón un reto verificable y pide confirmación antes de continuar.
 1. Inspecciona después el proyecto, su estado Git, README, documentación y reglas.
    Consulta Graphify antes de reconstruirlo.
 2. Resume lo que encontraste y formula en un solo bloque únicamente las preguntas que
@@ -53,25 +71,42 @@ FORMA DE TRABAJO
 4. Crea o actualiza AGENTS.md con estas reglas:
    - exigir PROJECT_CONTEXT.md como índice mínimo para cualquier IA;
    - crear CLAUDE.md como puntero a AGENTS.md y PROJECT_CONTEXT.md;
-   - leer Obsidian y Graphify antes del código;
+   - aplicar el flujo obligatorio y la jerarquía de reglas anteriores;
    - no leer Notion salvo reporte, reconciliación o petición explícita;
    - documentar decisiones y cambios de arquitectura;
    - mantener actualizado el contexto de Obsidian;
+   - mantener `Sesiones/En curso.md` después de acuerdos o cambios relevantes;
    - tratar cambios relevantes como candidatos a actividades de Notion;
    - pedir confirmación antes de registrar cualquier actividad;
+   - distinguir una tarea terminada de una sesión cerrada;
+   - esperar a que el usuario indique explícitamente cuándo desea cargar la sesión;
+   - mostrar el borrador de cierre y exigir confirmación humana explícita antes de
+     registrar la sesión en Notion;
    - no mostrar, registrar ni versionar secretos.
-5. Crea en Obsidian `Proyectos/<Proyecto>/` con `Resumen.md`, `Estado actual.md`,
-   `Sesiones/`, `Decisiones/` y `Arquitectura/`. Documenta qué hace hoy la aplicación,
-   qué no hace y cómo avanza al propósito final. Usa enlaces internos y enlázala con
-   [[Sistema de Trazabilidad]], [[Notion]], [[Obsidian]] y [[Graphify]].
+5. Crea en Obsidian `Proyectos/<Proyecto>/` con `Resumen.md`, `Reglas.md`,
+   `Estado actual.md`, `Sesiones/`, `Decisiones/` y `Arquitectura/`. `Reglas.md`
+   contiene solo convenciones locales y enlaza
+   [[Reglas globales del Sistema de Trazabilidad]]. Documenta qué hace hoy la
+   aplicación, qué no hace y cómo avanza al propósito final. Usa enlaces internos y
+   enlázala con [[Sistema de Trazabilidad]], [[Notion]], [[Obsidian]] y [[Graphify]].
+   Usa [[Plantilla - Sesión de proyecto]] para crear `Sesiones/En curso.md`. Incluye
+   reto, resumen ejecutivo, acuerdos, trabajo, validaciones, estado, pendientes,
+   continuidad y conexiones; no copies la conversación completa.
 6. Crea notas de decisión separadas cuando exista una elección durable con alternativas
    y consecuencias. Evita copiar métricas que pertenecen a Notion.
 7. Verifica los destinos de Notion por data_source_id; nunca elijas una fuente solo por
-   su nombre. Para el cierre de sesión usa una fila nueva en `Proyectos` con:
+   su nombre. Espera a que el usuario diga explícitamente que desea cerrar o cargar la
+   sesión. Solo entonces muestra un borrador con reto, resultado, resumen,
+   inicio, fin, duración, horas, versión, tag, commit y actividades. Pregunta
+   explícitamente: “¿Confirmas que deseas cerrar y registrar esta sesión en Notion?”.
+   Solo una respuesta afirmativa inequívoca autoriza la escritura. Completar una tarea,
+   resolver el reto, pausar o recibir mensajes de continuidad no cierra la sesión.
+   Tras la confirmación usa una fila nueva en `Proyectos` con:
    Nombre=carpeta raíz, Inicio, Fin, Duración minutos, Horas, Fecha sesión,
    Reto o compromiso, Resuelto, Resumen, Versión, Tag Git y Commit Git. Calcula la
-   duración desde timestamps con zona horaria. Nunca actualices una fila global ni
-   dedupliques por nombre.
+   duración activa desde timestamps con zona horaria. Si existe una pausa prolongada,
+   documenta sus intervalos y exclúyela de minutos y horas. Nunca actualices una fila
+   global ni dedupliques por nombre.
    Para actividades usa: Titulo=actividad, Category=categoría,
    Date Reported=fecha/hora, Horas=horas invertidas, Descripcion=detalle y
    Status=estado, relacionando `Proyecto` con la fila de sesión aplicable.
@@ -80,10 +115,13 @@ FORMA DE TRABAJO
    watch ni instales hooks sin autorización explícita.
 9. Implementa únicamente los cambios aprobados, preserva trabajo existente y ejecuta
    verificaciones proporcionales al riesgo.
-10. Al cerrar, crea la nota detallada de sesión, actualiza Estado actual, Resumen y
-    PROJECT_CONTEXT.md; actualiza Graphify; crea commit y tag Git anotado e inmutable;
-    finalmente carga una fila concisa de sesión en Notion. La primera versión es
-    `V1.0`; en sesiones posteriores propone el siguiente número.
+10. No propongas ni infieras por tu cuenta que la sesión terminó. Cuando el usuario
+    indique que desea cerrarla o cargarla, prepara el borrador y solicita la
+    confirmación explícita anterior. Sin ella, mantén la sesión abierta. Tras recibirla,
+    convierte `Sesiones/En curso.md` en la nota fechada de la versión, actualiza Estado
+    actual, Resumen y PROJECT_CONTEXT.md; actualiza Graphify; crea commit y tag Git
+    anotado e inmutable; finalmente carga una sola fila concisa en Notion. La primera
+    versión es `V1.0`; en sesiones posteriores propone el siguiente número.
 
 SEGURIDAD
 - No leas ni imprimas secretos salvo mediante el cargador autorizado que los necesite.
@@ -96,6 +134,8 @@ ENTREGA
 - Archivos creados y modificados.
 - Arquitectura y fuentes de verdad acordadas.
 - Notas creadas o actualizadas en Obsidian.
+- Nota de sesión con resumen, acuerdos, evidencia, pendientes y conexiones suficientes
+  para reanudar el proyecto.
 - Estado actual frente al propósito final y punteros de continuidad para IA.
 - Registros propuestos y, si fueron confirmados, creados en Notion.
 - Reto acordado, resultado, nueva fila de sesión y tag Git de la versión.

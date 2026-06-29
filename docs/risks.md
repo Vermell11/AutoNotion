@@ -10,7 +10,7 @@
 | Conflictos de sincronización de iCloud en la bóveda | abierto | cambios pequeños, nombres estables y revisión antes de automatizar |
 | Grafo desactualizado o con ruido | futuro | actualizaciones incrementales tras cambios arquitectónicos y control de salud |
 | Falsas relaciones inferidas por Graphify | futuro | conservar procedencia/confianza y no tratar inferencias como decisiones |
-| Doble registro o horas inconsistentes | futuro | clave idempotente, validación y confirmación humana antes de escribir |
+| Doble registro o horas inconsistentes | parcial | confirmación humana ya exigida; falta clave idempotente y reconciliación automatizada |
 
 El descubrimiento del 2026-06-28 encontró dos fuentes llamadas **Reporte de Tickets**,
 dos llamadas **Documentos** y varias fuentes de calendario/tareas. El nombre no es una
