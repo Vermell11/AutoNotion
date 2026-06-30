@@ -5,8 +5,9 @@
 Almacena actividades, categorías, prioridades, horas, estado, proyecto, fecha,
 responsable y reportes. La documentación extensa permanece en [[Obsidian]] y se enlaza.
 
-La integración inicial solo verifica conexión y descubre fuentes de datos. El secreto
-no debe aparecer en esta bóveda, registros ni control de versiones.
+El cliente verifica conexión, descubre fuentes y ofrece un cierre compartido e
+idempotente. El secreto no debe aparecer en esta bóveda, registros ni control de
+versiones.
 
 ## Fuente de actividades
 
@@ -41,3 +42,23 @@ afirmativa inequívoca, no se crea ni actualiza ninguna fila.
 Codex y Claude Code no leen Notion para reconstruir contexto rutinario. La memoria vive
 en [[Obsidian]] y el contexto técnico en [[Graphify]]. Notion es la capa de métricas,
 reportes y exposición estructurada por API.
+
+## Conector compartido
+
+Todo proyecto usa:
+
+```text
+python3 "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/scripts/notion.py" close-session
+```
+
+El payload sigue `config/session-close.example.json`. Primero se ejecuta con
+`--dry-run`; si falla, no se crea ni publica el tag. Cuando pasa, se crea el tag local,
+se ejecuta el cierre real y se exige `status=completed` antes de publicar Git.
+
+La identidad de sesión es `Nombre + Versión + Commit Git` con SHA completo. El comando
+reutiliza cierres existentes y completa actividades faltantes, por lo que puede
+reanudarse después de una respuesta incierta sin duplicar filas.
+
+El preflight también valida las opciones reales de `Estado`, `Ámbito`, `Category` y
+`Status`. Los agentes no inventan valores; solicitan una decisión cuando el mapeo no es
+inequívoco.

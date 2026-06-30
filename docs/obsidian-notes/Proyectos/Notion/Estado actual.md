@@ -13,6 +13,10 @@
   curso y sesiones cerradas.
 - Cierre humano asistido: la IA espera la orden del usuario, presenta el borrador y
   solicita confirmación antes de escribir en [[Notion]].
+- Comando central `close-session` con preflight, SHA completo, identidad idempotente,
+  creación de actividades relacionadas y reanudación de cierres parciales.
+- Regla [[Ponytail]] documentada para reducir código y contexto innecesarios en Codex,
+  Claude Code y los prompts estándar.
 
 ## Qué todavía no hace
 
@@ -20,17 +24,19 @@
 - No pregunta ni registra actividades mediante un flujo dedicado.
 - No genera reportes, dashboards, correos ni tareas programadas.
 - No sincroniza automáticamente Obsidian, Notion y código.
+- El conector todavía depende de la ruta local canónica de este repositorio.
 
 ## Avance al propósito final
 
 La base, seguridad, memoria por proyecto y continuidad de IA están operativas. El
 registro de actividades es parcial y la automatización/reportería siguen pendientes.
-El siguiente paso de producto es un cierre idempotente y reutilizable, seguido por el
-flujo confirmado de actividades.
+El siguiente paso es medir y reformar el flujo completo para reducir el contexto leído
+y producido por sesión, sin perder decisiones, continuidad ni trazabilidad. Después se
+retomarán la distribución del conector y los reportes.
 
 ## Referencias
 
 - [[Proyectos/Notion/Resumen]]
 - [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
-- [[Proyectos/Notion/Sesiones/2026-06-29 - V1.2]]
+- [[Proyectos/Notion/Sesiones/2026-06-29 - V1.3]]

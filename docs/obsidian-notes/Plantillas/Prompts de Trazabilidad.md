@@ -30,6 +30,11 @@ Funcionan con Codex y Claude Code.
   muestra el borrador y pregunta si confirma cerrar y registrar en Notion.
 - Sin una respuesta afirmativa inequívoca, la sesión sigue abierta. Tras confirmarla,
   se crea una sola fila con inicio, fin, duración, horas y resultado.
+- Todo cierre usa el conector central `scripts/notion.py close-session`: commit final,
+  payload externo con SHA completo, `--dry-run`, tag local, cierre real con
+  `status=completed` y solo entonces publicación de Git.
+- Si el preflight falla, la sesión sigue abierta; no se sustituye el conector por un
+  payload Markdown pendiente ni por un cliente local con credenciales copiadas.
 - Cada versión cerrada lleva un tag Git anotado; la primera es `V1.0`.
 - Cada proyecto usa `Proyectos/<Proyecto>/Resumen.md`, `Reglas.md`, `Estado actual.md`,
   `Sesiones/`, `Decisiones/` y `Arquitectura/`.
@@ -37,4 +42,9 @@ Funcionan con Codex y Claude Code.
   conexiones; al cierre se convierte en la nota fechada de la versión.
 - [[Obsidian]] conserva el contexto y las decisiones humanas.
 - [[Graphify]] conserva relaciones técnicas derivadas y no se ejecuta sin autorización.
+- Para tareas de código, después de comprender el flujo se aplica [[Ponytail]]:
+  no construir, reutilizar, stdlib, capacidades nativas, dependencias instaladas y
+  mínimo código funcional. Antes del cierre se revisa la complejidad del diff.
+- Ponytail nunca elimina seguridad, validación, prevención de pérdida de datos,
+  accesibilidad, requisitos explícitos ni la verificación mínima útil.
 - Nunca incluir secretos en prompts, notas, logs ni control de versiones.

@@ -6,5 +6,7 @@
 - [[2026-06-28 Confirmación explícita de cierre]]
 - [[2026-06-28 Reglas globales y por proyecto]]
 - [[2026-06-28 Memoria de sesiones para continuidad]]
+- [[2026-06-29 Conector central de cierre en Notion]]
+- [[2026-06-29 Adopción de Ponytail]]
 
 Las decisiones siguen siendo notas atómicas; este índice las agrupa por proyecto.

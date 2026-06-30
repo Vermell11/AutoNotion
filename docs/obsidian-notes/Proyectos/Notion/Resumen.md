@@ -20,6 +20,7 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
 - [[Notion]] para sesiones, actividades, métricas y datos compartibles por API.
 - [[Obsidian]] para conocimiento humano y continuidad por proyecto.
 - [[Graphify]] para relaciones técnicas derivadas.
+- [[Ponytail]] para reducir código, dependencias y contexto innecesario.
 - Git para evidencia versionada e inmutable.
 
 ## Navegación
@@ -28,19 +29,24 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
 - [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Estado actual]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
-- Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.2]]
+- Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.3]]
+- Sesión en curso: ninguna.
 - Decisiones: [[2026-06-28 Arquitectura inicial]] y
   [[2026-06-28 Trazabilidad por sesiones]], [[2026-06-28 Contexto de IA por proyecto]],
   [[2026-06-28 Confirmación explícita de cierre]] y
   [[2026-06-28 Reglas globales y por proyecto]],
-  [[2026-06-28 Memoria de sesiones para continuidad]]
+  [[2026-06-28 Memoria de sesiones para continuidad]] y
+  [[2026-06-29 Conector central de cierre en Notion]],
+  [[2026-06-29 Adopción de Ponytail]]
 
 ## Estado
 
-- Versión publicada: `V1.2`.
+- Versión publicada: `V1.3`.
 - Repositorio: https://github.com/Vermell11/AutoNotion
-- V1.2 consolida reglas globales y locales, memoria suficiente para sesiones abiertas
-  y cerradas, prompts coherentes y control humano del cierre.
+- V1.3 añade un conector central idempotente para que otros proyectos cierren
+  en Notion sin copiar secretos e incorpora [[Ponytail]] como criterio portable.
+- El siguiente objetivo es medir y reducir los tokens consumidos al iniciar, mantener
+  y cerrar sesiones sin perder continuidad.
 
 ## Continuidad para IA
 
@@ -52,3 +58,6 @@ Notion para contexto rutinario.
 Una tarea terminada no cierra la sesión. La IA espera a que el usuario indique cuándo
 desea cargarla; después muestra el borrador y solicita confirmación explícita para
 cerrar y registrar en [[Notion]]. Sin ella, la sesión permanece abierta.
+
+Para tareas de código, después del contexto y el grafo se aplica [[Ponytail]] y se
+revisa la complejidad del diff antes del cierre.

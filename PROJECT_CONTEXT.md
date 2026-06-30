@@ -3,7 +3,7 @@
 ## Identity
 
 - Project name: `Notion` (derived from the repository root folder).
-- Current released version: `V1.2`.
+- Current released version: `V1.3`.
 - Repository: https://github.com/Vermell11/AutoNotion
 
 ## Canonical context
@@ -17,7 +17,8 @@
 - Current state:
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Estado actual.md`
 - Last closed session:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Sesiones/2026-06-29 - V1.2.md`
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Sesiones/2026-06-29 - V1.3.md`
+- Current open session: none.
 - Architecture:
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Arquitectura/Arquitectura del sistema.md`
 
@@ -33,7 +34,7 @@
 1. `AGENTS.md` or `CLAUDE.md`.
 2. This file.
 3. Obsidian global rules and project rules.
-4. Obsidian project summary, current state, last closed session, and open session when
-   present.
+4. Obsidian project summary, current state, last closed session, and
+   `Sesiones/En curso.md` only when it exists.
 5. Existing Graphify graph.
 6. Source code and repository documentation relevant to the task.

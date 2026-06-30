@@ -17,6 +17,12 @@ carpeta raíz `Notion`. No pueden contradecir las reglas globales.
   en la nota fechada al cerrar; no conservar dos versiones divergentes.
 - Usar siempre los `data_source_id` canónicos documentados; nunca seleccionar una
   fuente de [[Notion]] únicamente por nombre.
+- Los proyectos externos usan el comando central `scripts/notion.py close-session`;
+  nunca se copia el secreto ni se implementa un cliente alternativo.
+- Para código Python, aplicar [[Ponytail]] después de consultar el grafo y rastrear
+  los llamadores. Preferir stdlib y patrones existentes; no añadir dependencias.
+- Antes del borrador de cierre, revisar el diff con `ponytail-review` y aplicar solo
+  simplificaciones que conserven seguridad, errores, contratos y pruebas.
 
 ## Punteros
 

@@ -1,0 +1,32 @@
+{
+  "session": {
+    "name": "NOMBRE_DE_LA_CARPETA_RAIZ",
+    "start": "2026-06-29T09:00:00-05:00",
+    "end": "2026-06-29T10:00:00-05:00",
+    "session_date": "2026-06-29",
+    "duration_minutes": 60,
+    "hours": 1.0,
+    "challenge": "RETO_VERIFICABLE",
+    "resolved": true,
+    "summary": "RESUMEN_CONCISO",
+    "version": "V1.0",
+    "git_tag": "V1.0",
+    "git_commit": "0000000000000000000000000000000000000000",
+    "status": "Done",
+    "scope": "Personal",
+    "objective": "OBJETIVO_DEL_PROYECTO",
+    "repository": "https://github.com/USUARIO/REPOSITORIO",
+    "obsidian": "obsidian://open?vault=Cerebro&file=Proyectos%2FPROYECTO%2FSesiones%2FSESION"
+  },
+  "activities": [
+    {
+      "title": "ACTIVIDAD_REALIZADA",
+      "category": "Operativo",
+      "reported_at": "2026-06-29T10:00:00-05:00",
+      "hours": 1.0,
+      "description": "DESCRIPCION_CONCISA",
+      "status": "Cerrado"
+    }
+  ],
+  "markdown": "# Resumen de la sesión\n\nCONTEXTO_CONCISO_PARA_CONSUMIDORES_DE_NOTION"
+}

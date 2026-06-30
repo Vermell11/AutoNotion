@@ -22,10 +22,12 @@ La aplicación es una base Python sin dependencias externas que actualmente:
 - Envía duplicados a la papelera.
 - Distingue operaciones reintentables de creaciones no idempotentes.
 - Calcula duración exacta de sesiones a partir de timestamps con zona horaria.
+- Ejecuta preflight de conexión y esquemas para cierres externos.
+- Registra sesiones y actividades con identidad idempotente y reanudación parcial.
 - Mantiene pruebas unitarias sin llamadas reales.
 
-El CLI público todavía ofrece únicamente `check` y `discover`. Las operaciones de
-escritura existen como biblioteca y se usan de forma controlada durante los cierres.
+El CLI público ofrece `check`, `discover` y `close-session`. Los proyectos externos
+usan el último mediante un payload JSON sin secretos.
 
 ## Avance por capacidad
 
@@ -36,7 +38,7 @@ escritura existen como biblioteca y se usan de forma controlada durante los cier
 | Contexto técnico Graphify | Operativo | Grafo local, reporte y actualización incremental |
 | Continuidad Codex/Claude | Operativa | `PROJECT_CONTEXT.md`, `AGENTS.md`, `CLAUDE.md` |
 | Ledger de sesiones en Notion | Operativo | Una fila nueva por cierre, métricas y evidencia Git |
-| Registro de actividades | Parcial | Fuente y cliente disponibles; falta flujo humano estable |
+| Registro de actividades | Operativo asistido | `close-session` crea y relaciona actividades confirmadas |
 | Medición automática de sesiones | Parcial | Cálculo implementado; cierre aún es asistido |
 | Reportes y dashboards | Pendiente | No implementados |
 | Detección automática de cambios | Pendiente | No implementada |
@@ -47,10 +49,15 @@ escritura existen como biblioteca y se usan de forma controlada durante los cier
 
 La fundación y la continuidad entre sesiones están resueltas. El sistema todavía no es
 una plataforma automatizada: requiere una IA o persona para ejecutar el cierre, escribir
-la fila de Notion y mantener Obsidian. El siguiente salto de valor es un flujo
-idempotente de registro de actividades y sesiones, seguido por reportes.
+la fila de Notion y mantener Obsidian. El siguiente salto de valor es distribuir el
+conector como comando portable y después construir reportes.
 
-El cierre asistido exige ahora mostrar un borrador y obtener confirmación humana
+El siguiente trabajo priorizado es medir y reducir el costo de contexto por sesión:
+lectura inicial, mantenimiento de memoria y cierre. La optimización debe conservar la
+continuidad necesaria y evitar duplicar narrativa entre repositorio, Obsidian,
+Graphify y Notion.
+
+El cierre asistido exige mostrar un borrador y obtener confirmación humana
 explícita. La IA espera a que el usuario indique cuándo desea cargar la sesión;
 resolver una tarea o el reto no autoriza escribir en Notion.
 

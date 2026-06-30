@@ -8,10 +8,14 @@
 Centralizar medición en [[Notion]], conocimiento humano en [[Obsidian]] y contexto
 técnico derivado en [[Graphify]].
 
+[[Ponytail]] aporta el criterio de implementación mínima para reducir código,
+dependencias y contexto innecesario; no es una fuente de verdad.
+
 ## Estado
 
-Fase 1: arquitectura base, seguridad, cliente de lectura para Notion y estrategia
-documental. No hay sincronización ni automatizaciones programadas.
+Base operativa: arquitectura, seguridad, lectura/escritura controlada en Notion,
+continuidad documental y conector central de cierre. No hay sincronización ni
+automatizaciones programadas.
 
 La extracción inicial y sus actualizaciones de [[Graphify]] comenzaron el 2026-06-28.
 Las métricas vigentes se consultan en `GRAPH_REPORT.md`; no se duplican aquí porque el
@@ -32,6 +36,7 @@ relacionada bidireccionalmente con las actividades.
 - [[Notion]]: actividades, horas, estado, proyecto, fechas y reportes.
 - [[Obsidian]]: decisiones, arquitectura, reuniones, lecciones y bitácora.
 - [[Graphify]]: relaciones de código y dependencias derivadas.
+- [[Ponytail]]: criterio de implementación mínima para tareas de código.
 
 ## Decisiones
 
@@ -40,6 +45,8 @@ relacionada bidireccionalmente con las actividades.
 - [[2026-06-28 Confirmación explícita de cierre]]
 - [[2026-06-28 Reglas globales y por proyecto]]
 - [[2026-06-28 Memoria de sesiones para continuidad]]
+- [[2026-06-29 Conector central de cierre en Notion]]
+- [[2026-06-29 Adopción de Ponytail]]
 
 ## Reglas
 
@@ -69,8 +76,9 @@ relacionada bidireccionalmente con las actividades.
 
 ## Siguientes hitos
 
-- Implementar un comando de cierre idempotente y reconciliable.
-- Implementar el flujo confirmado de actividades.
+- Distribuir el CLI central sin depender de una ruta absoluta.
+- Reconciliar el cierre pendiente de `auto_Notification` después de resolver categorías
+  y estados con el usuario.
 - Diseñar reportes y dashboards después de estabilizar la captura.
 
 ## Riesgos actuales

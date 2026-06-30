@@ -1,6 +1,7 @@
 # Prompt - Migrar proyecto existente al Sistema de Trazabilidad
 
-Relacionado con [[Sistema de Trazabilidad]], [[Notion]], [[Obsidian]] y [[Graphify]].
+Relacionado con [[Sistema de Trazabilidad]], [[Notion]], [[Obsidian]], [[Graphify]] y
+[[Ponytail]].
 
 ## Cómo usarlo
 
@@ -35,6 +36,8 @@ FUENTES DE VERDAD
 - Notion: datos operativos y medibles desde la adopción del sistema en adelante.
 - Obsidian: contexto vigente, decisiones, arquitectura, reuniones y aprendizajes.
 - Graphify: relaciones técnicas derivadas del código actual.
+- Ponytail: criterio de implementación mínima para reducir código, dependencias y
+  contexto innecesario; no es una fuente de verdad.
 - El repositorio: implementación y documentación operativa cercana al código.
 
 CAPAS DE REGLAS
@@ -54,9 +57,30 @@ Después de completar la migración, toda IA debe iniciar cada sesión exactamen
    cuando exista.
 4. Consultar el grafo existente de Graphify antes de inspeccionar el código o proponer
    una nueva extracción.
-5. No consultar Notion para reconstruir contexto. Solo acceder a Notion cuando se
+5. Para tareas de código, aplicar Ponytail después de comprender el flujo real.
+6. No consultar Notion para reconstruir contexto. Solo acceder a Notion cuando se
    solicite un reporte, una reconciliación, un registro aprobado o una operación
    explícita de cierre de sesión.
+
+REGLA PONYTAIL
+- Si la skill está disponible, usa `ponytail` en cambios de código y
+  `ponytail-review` antes de cerrar un cambio relevante.
+- Si no está disponible, aplica manualmente esta escalera: omitir lo innecesario;
+  reutilizar código del repositorio; preferir biblioteca estándar; usar capacidades
+  nativas; reutilizar dependencias instaladas; escribir solo entonces el mínimo código.
+- No añadas dependencias para ahorrar unas pocas líneas ni crees abstracciones,
+  configuración o scaffolding especulativos.
+- No simplifiques seguridad, validación en límites de confianza, prevención de pérdida
+  de datos, accesibilidad, requisitos explícitos ni la verificación mínima útil.
+
+CONECTOR CENTRAL DE NOTION
+- Usa exclusivamente:
+  `python3 "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/scripts/notion.py" close-session`
+- El contrato está en:
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/config/session-close.example.json`
+- Nunca copies la API Key ni implementes otro cliente en este proyecto.
+- Si el conector o su preflight no están disponibles, mantén la sesión abierta y no
+  crees ni publiques el tag.
 
 FASE 1 — INVENTARIO SIN MODIFICACIONES
 0. Toma el nombre del proyecto exclusivamente del nombre de la carpeta raíz. Para el
@@ -68,7 +92,9 @@ FASE 1 — INVENTARIO SIN MODIFICACIONES
    existente. No consultes Notion para reconstruir contexto. Propón un reto
    verificable y pide confirmación antes de continuar.
 1. Inspecciona estructura, README, documentación, configuración, pruebas, estado Git,
-   reglas de agentes, archivos sensibles y graphify-out si existe.
+   reglas de agentes, archivos sensibles y graphify-out si existe. Verifica que el
+   conector central responda a `close-session --help`; esta comprobación no accede a
+   Notion ni lee secretos.
 2. Identifica arquitectura actual, módulos, integraciones, responsables, decisiones
    implícitas, riesgos, deuda documental y fuentes contradictorias.
 3. Clasifica la información:
@@ -94,6 +120,10 @@ FASE 3 — MIGRACIÓN APROBADA
    Añade también que una tarea terminada no cierra la sesión y que ninguna fila de
    cierre puede escribirse en Notion hasta que el usuario indique que desea cargarla,
    se muestre el borrador y se reciba confirmación humana explícita.
+   Exige el conector central, su `--dry-run` y `status=completed` antes de publicar Git;
+   prohíbe copiar secretos o crear clientes alternativos de Notion. Para código,
+   exige Ponytail y una revisión de complejidad antes del cierre, sin sacrificar
+   seguridad, contratos ni pruebas.
 9. Consolida en Obsidian `Proyectos/<Proyecto>/` con `Resumen.md`, `Reglas.md`,
    `Estado actual.md`, `Sesiones/`, `Decisiones/` y `Arquitectura/`. `Reglas.md`
    contiene únicamente convenciones locales y enlaza
@@ -107,33 +137,45 @@ FASE 3 — MIGRACIÓN APROBADA
 10. Crea notas de decisión solo para decisiones todavía relevantes. Conserva contexto
     histórico mínimo cuando explique el estado actual; no migres ruido ni bitácoras
     obsoletas.
-11. En Notion, verifica destinos por data_source_id. Espera a que el usuario diga
-    explícitamente que desea cerrar o cargar la sesión. Solo entonces muestra un
-    borrador con reto, resultado, resumen, inicio, fin, duración, horas, versión,
-    tag, commit y actividades. Pregunta explícitamente: “¿Confirmas que deseas cerrar y
+11. El conector central verifica destinos por data_source_id. Espera a que el usuario
+    diga explícitamente que desea cerrar o cargar la sesión. Solo entonces muestra un
+    borrador con reto, resultado, resumen, inicio, fin, duración, horas, versión, tag y
+    actividades. Pregunta explícitamente: “¿Confirmas que deseas cerrar y
     registrar esta sesión en Notion?”. Solo una respuesta afirmativa inequívoca
     autoriza la escritura. Completar una tarea, resolver el reto, pausar o recibir
-    mensajes de continuidad no cierra la sesión. Tras la confirmación crea una fila
-    nueva en `Proyectos` con Nombre=carpeta raíz, Inicio, Fin, Duración minutos, Horas,
+    mensajes de continuidad no cierra la sesión. Tras la confirmación construye un
+    payload JSON fuera del repositorio usando el contrato canónico. La sesión usa una
+    fila nueva en `Proyectos` con Nombre=carpeta raíz, Inicio, Fin, Duración minutos, Horas,
     Fecha sesión, Reto o compromiso, Resuelto, Resumen, Versión, Tag Git y Commit Git.
     Calcula la duración activa desde timestamps con zona horaria. Si existe una pausa
     prolongada, documenta sus intervalos y exclúyela de minutos y horas. Nunca
     actualices una fila global ni dedupliques por nombre. Para actividades usa:
     Titulo=actividad, Category=categoría,
     Date Reported=fecha/hora, Horas=horas invertidas, Descripcion=detalle y
-    Status=estado, relacionando `Proyecto` con la fila de sesión aplicable. No importes
-    actividades ni horas anteriores.
+    Status=estado, relacionando `Proyecto` con la fila de sesión aplicable. No inventes
+    categorías ni estados: el `--dry-run` valida opciones reales. Si rechaza una opción
+    y el mapeo no es inequívoco, pregunta al usuario. No importes actividades ni horas
+    anteriores.
 12. Para Graphify, define raíz, exclusiones y política de actualización. Si ya existe
     un grafo, consúltalo antes de proponer una reconstrucción. No ejecutes extract,
     update, watch ni instales hooks sin autorización.
 13. Preserva cambios locales y convenciones válidas. Añade verificaciones proporcionales
-    y evita reescrituras masivas no justificadas.
+    y evita reescrituras masivas no justificadas. Aplica la regla Ponytail después de
+    comprender el flujo afectado y conserva el diff mínimo que resuelva la causa real.
 14. No propongas ni infieras por tu cuenta que la sesión terminó. Cuando el usuario
     indique que desea cerrarla o cargarla, prepara el borrador y solicita la
-    confirmación explícita anterior. Sin ella, mantén la sesión abierta. Tras recibirla,
-    convierte `Sesiones/En curso.md` en la nota fechada de la versión, actualiza Estado
-    actual, Resumen y PROJECT_CONTEXT.md; actualiza Graphify; crea commit y tag Git
-    anotado e inmutable; finalmente carga una sola fila concisa en Notion. La primera
+    confirmación explícita anterior. Sin ella, mantén la sesión abierta. Tras recibirla:
+    a) configura y verifica el remoto Git;
+    b) convierte `Sesiones/En curso.md` en la nota fechada, actualiza Estado actual,
+       Resumen, PROJECT_CONTEXT.md y Graphify, y ejecuta las pruebas;
+    c) crea el commit final, pero todavía no crees ni publiques el tag;
+    d) obtiene el SHA completo con `git rev-parse HEAD`, termina el payload fuera del
+       repositorio y ejecuta el conector central con `--dry-run`;
+    e) si falla, mantén el cierre pendiente y no publiques Git;
+    f) si pasa, crea localmente el tag anotado, ejecuta el conector sin `--dry-run` y
+       exige `status=completed`;
+    g) solo entonces publica `main` y el tag.
+    No hagas commits posteriores al tag para completar URL o metadata. La primera
     versión es `V1.0`; en sesiones posteriores propone el siguiente número.
 
 SEGURIDAD
@@ -151,8 +193,10 @@ ENTREGA
   para reanudar el proyecto.
 - Estado actual frente al propósito final y punteros de continuidad para IA.
 - Registros propuestos y, solo si se confirmaron, creados en Notion.
+- Resultado del preflight y del cierre central (`status`, URL y conteo de actividades).
 - Reto acordado, resultado, nueva fila de sesión y tag Git de la versión.
 - Estrategia y estado de Graphify.
+- Resultado de la revisión Ponytail cuando hubo cambios de código.
 - Riesgos detectados, verificaciones y deuda pendiente.
 - Próximos pasos sin reconstrucción histórica.
 ```

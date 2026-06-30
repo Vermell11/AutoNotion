@@ -44,9 +44,9 @@ bidireccionalmente con las actividades mediante `Proyecto` ↔ `Actividades`.
   `Duración minutos`, `Horas`, `Reto o compromiso`, `Resuelto`, `Resumen`, `Versión`,
   `Tag Git`, `Commit Git`, `Repositorio` y `Obsidian`.
 
-`Nombre` siempre procede de la carpeta raíz y puede repetirse. La identidad de una
-sesión la forman su página, fecha, versión y commit; nunca se deduplica solo por nombre.
-Cada cierre registra reto, resolución, resumen y evidencia Git.
+`Nombre` siempre procede de la carpeta raíz y puede repetirse. La identidad idempotente
+es `Nombre + Versión + Commit Git`; nunca se deduplica solo por nombre. Cada cierre
+registra reto, resolución, resumen y evidencia Git.
 
 ## Política de lectura y escritura
 
@@ -89,8 +89,9 @@ Los reportes deben ser vistas o consumidores de estas fuentes, no copias de dato
 ## Reglas
 
 - Identificadores de fuentes en configuración local, nunca incrustados en lógica.
-- Creaciones no idempotentes no se reintentan automáticamente; una fase futura debe
-  añadir claves externas de idempotencia.
+- Las creaciones no se reintentan a ciegas: `close-session` reconcilia antes de
+  continuar y reanuda actividades faltantes.
+- El preflight valida esquemas y opciones reales de select/status.
 - Confirmación humana antes de registrar una actividad durante la siguiente fase.
 - Fechas almacenadas con zona horaria explícita; horas como duración, no texto.
 - Descubrimiento no implica permisos de escritura.

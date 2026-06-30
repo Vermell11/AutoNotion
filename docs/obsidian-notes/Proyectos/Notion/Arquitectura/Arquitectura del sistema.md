@@ -15,12 +15,16 @@ Notion queda fuera del flujo normal de lectura.
 
 ## Flujo de cierre
 
-`Borrador → confirmación humana → Obsidian → PROJECT_CONTEXT.md → Graphify update → pruebas → commit/tag → fila Notion`
+`Borrador → confirmación → Obsidian/PROJECT_CONTEXT/Graphify/pruebas → commit final → close-session --dry-run → tag local → close-session → status=completed → push`
 
 La fila de Notion contiene resumen conciso, reto, resultado, inicio, fin, duración,
 horas, versión, tag y commit. La narrativa completa permanece en la nota de sesión.
 Completar una tarea no activa este flujo; sin confirmación explícita, la sesión sigue
 abierta y no se escribe la fila.
+
+`closing.py` valida el payload y esquemas, reconcilia `Nombre + Versión + Commit Git` y
+reanuda actividades faltantes. El proyecto consumidor invoca el CLI central mediante
+su ruta absoluta y no recibe la API Key.
 
 ## Estructura por proyecto
 

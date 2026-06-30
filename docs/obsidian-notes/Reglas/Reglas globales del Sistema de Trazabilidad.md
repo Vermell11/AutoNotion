@@ -27,6 +27,22 @@ Toda IA, incluyendo Codex y Claude Code, debe:
 
 [[Notion]] no se consulta para reconstruir contexto rutinario.
 
+## Optimización de código y tokens
+
+- En tareas de código se usa [[Ponytail]] después de comprender el flujo real.
+- La escalera obligatoria es: no construir si no es necesario; reutilizar código
+  existente; preferir biblioteca estándar; usar capacidades nativas; reutilizar una
+  dependencia ya instalada; y solo entonces escribir el mínimo código que funciona.
+- Antes de cerrar un cambio de código relevante se realiza una revisión Ponytail de
+  complejidad. Si la skill no está disponible, la IA aplica manualmente el mismo
+  criterio y lo declara.
+- Nunca se añade una dependencia solo para reducir líneas.
+- La simplificación no elimina seguridad, validación en límites de confianza, manejo
+  de errores que evita pérdida de datos, accesibilidad, requisitos explícitos ni una
+  verificación mínima ejecutable.
+- Ponytail optimiza la implementación y el contexto producido; no reemplaza
+  [[Obsidian]], [[Graphify]], las pruebas ni las decisiones humanas.
+
 ## Memoria de sesiones
 
 - Durante el trabajo activo se mantiene `Proyectos/<Proyecto>/Sesiones/En curso.md`.
@@ -65,4 +81,23 @@ Toda IA, incluyendo Codex y Claude Code, debe:
 - Sin esa confirmación, la sesión continúa abierta y no se crea, actualiza ni publica
   ninguna fila de sesión.
 
-Relacionado con [[Obsidian]], [[Notion]] y [[Graphify]].
+## Conector central de cierre
+
+- Todo proyecto usa el comando canónico:
+  `python3 "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/scripts/notion.py" close-session`.
+- El payload JSON sigue
+  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/config/session-close.example.json`,
+  se guarda fuera del repositorio consumidor y nunca contiene secretos.
+- Después del commit final se usa su SHA completo y se ejecuta `--dry-run`.
+- Si el preflight falla, la sesión permanece pendiente y no se crea ni publica el tag.
+- Si pasa, se crea el tag local, se ejecuta el cierre sin `--dry-run` y se exige
+  `status=completed`.
+- Solo después se publican `main` y el tag. No se permiten commits posteriores al tag
+  para agregar URL o metadata de cierre.
+- Una segunda ejecución reconcilia la identidad `Nombre + Versión + Commit Git`,
+  reutiliza filas existentes y completa actividades faltantes.
+- El preflight valida opciones reales de select/status. Nunca se inventan categorías o
+  estados; si el mapeo es ambiguo, se pide decisión humana.
+- Nunca copiar `key.txt`, pasar tokens por argumentos ni crear clientes alternativos.
+
+Relacionado con [[Obsidian]], [[Notion]], [[Graphify]] y [[Ponytail]].

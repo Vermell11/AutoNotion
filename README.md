@@ -5,10 +5,11 @@ en Obsidian y contexto técnico derivado en Graphify.
 
 ## Estado
 
-Versión V1.2. El cliente soporta lectura y escritura controlada en Notion,
+Versión V1.3. El cliente soporta lectura y escritura controlada en Notion,
 documentación y memoria de sesiones por proyecto en Obsidian, Graphify y continuidad
-entre Codex y Claude Code. No incluye sincronización, reportes, correo ni tareas
-programadas.
+entre Codex y Claude Code. Incluye un cierre idempotente compartido y reglas Ponytail
+para minimizar implementación y contexto. No incluye sincronización, reportes, correo
+ni tareas programadas.
 
 ## Inicio rápido
 
@@ -17,8 +18,13 @@ Requiere Python 3.11 o posterior y no tiene dependencias externas.
 ```bash
 python3 scripts/notion.py check
 python3 scripts/notion.py discover
+python3 scripts/notion.py close-session --payload /tmp/proyecto-v1-notion.json --dry-run
 python3 -m unittest discover -s tests
 ```
+
+`close-session` valida y registra una sesión con sus actividades sin duplicar cierres
+anteriores. Consulta [el contrato y el orden de cierre](docs/session-close.md) antes de
+usarlo.
 
 El cliente busca la credencial en este orden:
 
