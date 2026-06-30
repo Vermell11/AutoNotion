@@ -20,6 +20,10 @@ En Codex se usan `ponytail` y `ponytail-review` cuando están disponibles. En Cl
 Code se usan sus equivalentes instalados; si no existen, se aplica manualmente esta
 nota.
 
+Ponytail se instala como capacidad global del agente y cada proyecto la activa desde
+`AGENTS.md`. No se copia la skill dentro de repositorios: evitar duplicación y deriva
+de versiones también es parte de la optimización.
+
 ## Límites
 
 - No sustituye pruebas, documentación durable ni decisiones humanas.

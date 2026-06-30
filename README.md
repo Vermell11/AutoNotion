@@ -5,11 +5,14 @@ en Obsidian y contexto técnico derivado en Graphify.
 
 ## Estado
 
-Versión V1.3. El cliente soporta lectura y escritura controlada en Notion,
+Versión V1.4. El cliente soporta lectura y escritura controlada en Notion,
 documentación y memoria de sesiones por proyecto en Obsidian, Graphify y continuidad
 entre Codex y Claude Code. Incluye un cierre idempotente compartido y reglas Ponytail
 para minimizar implementación y contexto. No incluye sincronización, reportes, correo
 ni tareas programadas.
+
+El arranque usa contrato y cápsula compactos, Graphify con presupuesto inicial 600 y
+máximo tres fuentes. El resto del contexto se carga bajo demanda.
 
 ## Inicio rápido
 

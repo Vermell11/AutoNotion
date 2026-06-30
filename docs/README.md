@@ -17,6 +17,7 @@
 - [ADR-006: memoria de sesiones para continuidad](decisions/ADR-006-memoria-de-sesiones-para-continuidad.md)
 - [ADR-007: conector central de cierre en Notion](decisions/ADR-007-conector-central-de-cierre-notion.md)
 - [ADR-008: adopción de Ponytail](decisions/ADR-008-adopcion-ponytail.md)
+- [ADR-009: contexto progresivo y presupuestos](decisions/ADR-009-contexto-progresivo-y-presupuestos.md)
 
 La bóveda de Obsidian es la fuente de verdad para conocimiento humano. Estos documentos
 son especificaciones cercanas al código y deben mantenerse alineados con sus notas.

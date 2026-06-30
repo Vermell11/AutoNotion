@@ -116,6 +116,18 @@ class SessionCloseServiceTests(unittest.TestCase):
         with self.assertRaisesRegex(ClosePayloadError, "SHA completo"):
             validate_close_payload(invalid)
 
+    def test_rejects_verbose_notion_summary(self) -> None:
+        invalid = payload()
+        invalid["session"]["summary"] = "detalle " * 121
+        with self.assertRaisesRegex(ClosePayloadError, "máximo de 120 palabras"):
+            validate_close_payload(invalid)
+
+    def test_rejects_verbose_activity_description(self) -> None:
+        invalid = payload()
+        invalid["activities"][0]["description"] = "detalle " * 81
+        with self.assertRaisesRegex(ClosePayloadError, "máximo de 80 palabras"):
+            validate_close_payload(invalid)
+
     def test_dry_run_validates_without_writing(self) -> None:
         result = self.service.execute(payload(), dry_run=True)
         self.assertTrue(self.client.verified)

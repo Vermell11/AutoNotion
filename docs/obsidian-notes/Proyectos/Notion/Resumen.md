@@ -29,7 +29,7 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
 - [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Estado actual]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
-- Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.3]]
+- Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.4]]
 - Sesión en curso: ninguna.
 - Decisiones: [[2026-06-28 Arquitectura inicial]] y
   [[2026-06-28 Trazabilidad por sesiones]], [[2026-06-28 Contexto de IA por proyecto]],
@@ -37,23 +37,23 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
   [[2026-06-28 Reglas globales y por proyecto]],
   [[2026-06-28 Memoria de sesiones para continuidad]] y
   [[2026-06-29 Conector central de cierre en Notion]],
-  [[2026-06-29 Adopción de Ponytail]]
+  [[2026-06-29 Adopción de Ponytail]] y
+  [[2026-06-29 Contexto progresivo y presupuestos]]
 
 ## Estado
 
-- Versión publicada: `V1.3`.
+- Versión publicada: `V1.4`.
 - Repositorio: https://github.com/Vermell11/AutoNotion
 - V1.3 añade un conector central idempotente para que otros proyectos cierren
   en Notion sin copiar secretos e incorpora [[Ponytail]] como criterio portable.
-- El siguiente objetivo es medir y reducir los tokens consumidos al iniciar, mantener
-  y cerrar sesiones sin perder continuidad.
+- V1.4 redujo el arranque estimado de ~6300 a ≤1500 tokens y el cierre de ~2425 a
+  ~738 con cápsula compacta, Graphify limitado y presupuestos automáticos.
 
 ## Continuidad para IA
 
-La IA lee `AGENTS.md` o `CLAUDE.md`, consulta `PROJECT_CONTEXT.md` como índice, lee las
-reglas globales y del proyecto, esta nota, la última sesión cerrada y `En curso.md` si
-existe; después consulta el grafo y solo entonces inspecciona el código. No consulta
-Notion para contexto rutinario.
+La IA lee el contrato y la cápsula, la sesión abierta si existe y consulta Graphify con
+presupuesto 600. Abre máximo tres fuentes; esta nota, las reglas y la historia se
+cargan solo cuando aportan evidencia. No consulta Notion para contexto rutinario.
 
 Una tarea terminada no cierra la sesión. La IA espera a que el usuario indique cuándo
 desea cargarla; después muestra el borrador y solicita confirmación explícita para

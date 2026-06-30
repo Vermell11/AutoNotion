@@ -28,14 +28,15 @@ Proyectos/<Proyecto>/
 Las reglas globales aplican a todos los proyectos. `Reglas.md` contiene solo
 convenciones locales y no puede contradecirlas.
 
-Las herramientas de IA leen `AGENTS.md` o `CLAUDE.md`, consultan `PROJECT_CONTEXT.md`
-como índice, leen las reglas globales y locales, el resumen y la última sesión, y
-después consultan [[Graphify]] antes del código. [[Notion]] no forma parte de esa
-lectura rutinaria.
+Las herramientas de IA leen el contrato y la cápsula, la sesión abierta si existe y
+consultan [[Graphify]] con presupuesto 600. Abren máximo tres fuentes. Reglas, resumen,
+estado, ADR y sesiones históricas se cargan bajo demanda. [[Notion]] no participa en
+esa lectura.
 
 `Sesiones/En curso.md` se mantiene durante el trabajo activo. Al cierre confirmado se
 convierte en la nota fechada de la versión usando [[Plantilla - Sesión de proyecto]].
-Debe resumir acuerdos, evidencia, estado y continuidad, no reproducir la conversación.
+Debe permanecer bajo 500 tokens estimados y conservar solo reto, resultado, decisiones,
+validación y continuidad.
 
 Cada `Resumen.md` de proyecto debe recordar que una tarea terminada no equivale a una
 sesión cerrada. La IA muestra primero el borrador de cierre y solicita confirmación

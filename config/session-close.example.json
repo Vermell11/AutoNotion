@@ -8,13 +8,12 @@
     "hours": 1.0,
     "challenge": "RETO_VERIFICABLE",
     "resolved": true,
-    "summary": "RESUMEN_CONCISO",
+    "summary": "MAXIMO_120_PALABRAS_SOLO_TRABAJO_Y_RESULTADO",
     "version": "V1.0",
     "git_tag": "V1.0",
     "git_commit": "0000000000000000000000000000000000000000",
     "status": "Done",
     "scope": "Personal",
-    "objective": "OBJETIVO_DEL_PROYECTO",
     "repository": "https://github.com/USUARIO/REPOSITORIO",
     "obsidian": "obsidian://open?vault=Cerebro&file=Proyectos%2FPROYECTO%2FSesiones%2FSESION"
   },
@@ -24,9 +23,8 @@
       "category": "Operativo",
       "reported_at": "2026-06-29T10:00:00-05:00",
       "hours": 1.0,
-      "description": "DESCRIPCION_CONCISA",
+      "description": "MAXIMO_80_PALABRAS",
       "status": "Cerrado"
     }
-  ],
-  "markdown": "# Resumen de la sesión\n\nCONTEXTO_CONCISO_PARA_CONSUMIDORES_DE_NOTION"
+  ]
 }

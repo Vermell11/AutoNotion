@@ -19,11 +19,12 @@ documentarse como decisión.
 Toda IA, incluyendo Codex y Claude Code, debe:
 
 1. Leer `AGENTS.md` o `CLAUDE.md`.
-2. Consultar `PROJECT_CONTEXT.md`, que funciona únicamente como índice mínimo.
-3. Seguir sus enlaces a esta nota, a `Proyectos/<Proyecto>/Reglas.md`, al resumen, a la
-   última sesión cerrada y a `Sesiones/En curso.md` cuando exista en [[Obsidian]].
-4. Consultar el grafo existente de [[Graphify]] antes de inspeccionar el código o
-   proponer una extracción.
+2. Consultar la cápsula compacta `PROJECT_CONTEXT.md`.
+3. Leer `Sesiones/En curso.md` únicamente cuando exista.
+4. Consultar [[Graphify]] con términos de la tarea y presupuesto inicial de 600
+   tokens; abrir como máximo tres fuentes y ampliar a 1200 solo si falta evidencia.
+5. Cargar esta nota, reglas locales, resumen, estado, ADR, arquitectura o sesiones
+   históricas únicamente cuando la tarea lo requiera.
 
 [[Notion]] no se consulta para reconstruir contexto rutinario.
 
@@ -80,6 +81,9 @@ Toda IA, incluyendo Codex y Claude Code, debe:
 - Solo una respuesta afirmativa inequívoca autoriza una única fila de cierre.
 - Sin esa confirmación, la sesión continúa abierta y no se crea, actualiza ni publica
   ninguna fila de sesión.
+- El resumen de Notion contiene solo lo realizado y su resultado. No repite horas,
+  fechas, versión, commit, tag, evidencias, listas de archivos, métricas de Graphify ni
+  contexto ya conservado en [[Obsidian]].
 
 ## Conector central de cierre
 

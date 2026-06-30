@@ -47,6 +47,7 @@ relacionada bidireccionalmente con las actividades.
 - [[2026-06-28 Memoria de sesiones para continuidad]]
 - [[2026-06-29 Conector central de cierre en Notion]]
 - [[2026-06-29 Adopción de Ponytail]]
+- [[2026-06-29 Contexto progresivo y presupuestos]]
 
 ## Reglas
 
@@ -70,6 +71,7 @@ relacionada bidireccionalmente con las actividades.
 ## Plantillas
 
 - [[Prompts de Trazabilidad]]
+- [[Contrato base - Sistema de Trazabilidad]]
 - [[Prompt - Integrar proyecto nuevo al Sistema de Trazabilidad]]
 - [[Prompt - Migrar proyecto existente al Sistema de Trazabilidad]]
 - [[Plantilla - Sesión de proyecto]]

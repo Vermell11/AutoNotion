@@ -89,6 +89,9 @@ ACTIVITY_REQUIRED = {
     "status",
 }
 
+MAX_NOTION_SUMMARY_WORDS = 120
+MAX_ACTIVITY_DESCRIPTION_WORDS = 80
+
 
 def load_close_targets(config_file: Path = DEFAULT_CONFIG_FILE) -> CloseTargets:
     try:
@@ -162,6 +165,9 @@ def validate_close_payload(payload: dict[str, Any]) -> None:
     _validate_iso_date(session["session_date"], "session.session_date")
     if not isinstance(session["resolved"], bool):
         raise ClosePayloadError("session.resolved debe ser booleano.")
+    _validate_word_limit(
+        session["summary"], "session.summary", MAX_NOTION_SUMMARY_WORDS
+    )
     _validate_number(session, "duration_minutes", "session")
     _validate_number(session, "hours", "session")
     if abs(float(session["hours"]) - float(session["duration_minutes"]) / 60) > 0.02:
@@ -186,6 +192,11 @@ def validate_close_payload(payload: dict[str, Any]) -> None:
                 )
         _validate_number(activity, "hours", f"Actividad {index}")
         _validate_iso_date(activity["reported_at"], f"Actividad {index}.reported_at")
+        _validate_word_limit(
+            activity["description"],
+            f"Actividad {index}.description",
+            MAX_ACTIVITY_DESCRIPTION_WORDS,
+        )
 
 
 def _validate_number(value: dict[str, Any], field: str, prefix: str) -> None:
@@ -199,6 +210,11 @@ def _validate_iso_date(value: str, label: str) -> None:
         datetime.fromisoformat(value)
     except ValueError as exc:
         raise ClosePayloadError(f"{label} no es una fecha ISO válida.") from exc
+
+
+def _validate_word_limit(value: str, label: str, maximum: int) -> None:
+    if len(value.split()) > maximum:
+        raise ClosePayloadError(f"{label} supera el máximo de {maximum} palabras.")
 
 
 class SessionCloseService:

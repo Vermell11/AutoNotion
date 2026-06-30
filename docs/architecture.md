@@ -18,8 +18,9 @@ key.txt / NOTION_API_KEY
           v
 config -> NotionClient -> API Notion (lectura y cierres estructurados)
 
-AGENTS / CLAUDE -> PROJECT_CONTEXT -> reglas globales -> reglas del proyecto
-                  -> resumen + última sesión + En curso -> Graphify
+AGENTS / CLAUDE -> PROJECT_CONTEXT -> En curso (si existe)
+                  -> Graphify --budget 600 -> máximo 3 fuentes
+                  -> contexto adicional bajo demanda
                   -> Ponytail -> código mínimo + verificación
 
 propuesta -> confirmación -> Obsidian/Graphify/pruebas -> commit final
@@ -36,6 +37,10 @@ mostrar el borrador, la sesión sigue abierta y no se escribe su fila en Notion.
 
 Obsidian separa reglas globales de `Proyectos/<Proyecto>/Reglas.md`. Las reglas locales
 especializan el repositorio y no pueden contradecir las globales.
+
+El flujo usa divulgación progresiva. Reglas extensas, resumen, estado, ADR y sesiones
+históricas son contexto frío; no se cargan en cada inicio. `PROJECT_CONTEXT.md` es una
+cápsula derivada y compacta, no una nueva fuente de verdad.
 
 ## Capas
 

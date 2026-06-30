@@ -9,16 +9,17 @@
 
 ## Flujo de inicio
 
-`AGENTS.md / CLAUDE.md → PROJECT_CONTEXT.md → reglas globales → reglas del proyecto → resumen + última sesión + En curso → Graphify → código`
+`AGENTS.md / CLAUDE.md → PROJECT_CONTEXT.md → En curso (si existe) → Graphify 600 → máximo 3 fuentes → Ponytail → código`
 
-Notion queda fuera del flujo normal de lectura.
+Reglas extensas, resumen, estado, ADR y sesiones históricas se cargan solo cuando la
+tarea las requiere. Notion queda fuera del flujo normal de lectura.
 
 ## Flujo de cierre
 
 `Borrador → confirmación → Obsidian/PROJECT_CONTEXT/Graphify/pruebas → commit final → close-session --dry-run → tag local → close-session → status=completed → push`
 
-La fila de Notion contiene resumen conciso, reto, resultado, inicio, fin, duración,
-horas, versión, tag y commit. La narrativa completa permanece en la nota de sesión.
+La fila de Notion contiene propiedades estructuradas y un resumen de máximo 120
+palabras con solo trabajo y resultado. La narrativa y evidencia permanecen en Obsidian.
 Completar una tarea no activa este flujo; sin confirmación explícita, la sesión sigue
 abierta y no se escribe la fila.
 

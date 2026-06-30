@@ -37,6 +37,7 @@ usan el último mediante un payload JSON sin secretos.
 | Documentación humana en Obsidian | Completa para Notion | Estructura por proyecto y sesiones |
 | Contexto técnico Graphify | Operativo | Grafo local, reporte y actualización incremental |
 | Continuidad Codex/Claude | Operativa | `PROJECT_CONTEXT.md`, `AGENTS.md`, `CLAUDE.md` |
+| Presupuesto de contexto | En optimización | Divulgación progresiva y pruebas V1.4 |
 | Ledger de sesiones en Notion | Operativo | Una fila nueva por cierre, métricas y evidencia Git |
 | Registro de actividades | Operativo asistido | `close-session` crea y relaciona actividades confirmadas |
 | Medición automática de sesiones | Parcial | Cálculo implementado; cierre aún es asistido |
@@ -52,18 +53,16 @@ una plataforma automatizada: requiere una IA o persona para ejecutar el cierre, 
 la fila de Notion y mantener Obsidian. El siguiente salto de valor es distribuir el
 conector como comando portable y después construir reportes.
 
-El siguiente trabajo priorizado es medir y reducir el costo de contexto por sesión:
-lectura inicial, mantenimiento de memoria y cierre. La optimización debe conservar la
-continuidad necesaria y evitar duplicar narrativa entre repositorio, Obsidian,
-Graphify y Notion.
+V1.4 aplica divulgación progresiva: contrato y cápsula compactos, Graphify con
+presupuesto 600, máximo tres fuentes y contexto frío bajo demanda. El baseline
+documental estimado fue ~6300 tokens al iniciar y ~2425 al cerrar.
 
 El cierre asistido exige mostrar un borrador y obtener confirmación humana
 explícita. La IA espera a que el usuario indique cuándo desea cargar la sesión;
 resolver una tarea o el reto no autoriza escribir en Notion.
 
-La continuidad durante una sesión abierta se conserva en `Sesiones/En curso.md`. Al
-cierre confirmado se transforma en una nota fechada con resumen, acuerdos, evidencia,
-estado, pendientes y conexiones.
+La sesión abierta y su versión histórica usan un formato compacto. Notion recibe solo
+trabajo y resultado; Obsidian conserva decisiones y continuidad.
 
 ## Riesgos vigentes
 

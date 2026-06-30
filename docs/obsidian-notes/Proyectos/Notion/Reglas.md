@@ -13,8 +13,8 @@ carpeta raíz `Notion`. No pueden contradecir las reglas globales.
   canónica `Cerebro`; [[Obsidian]] prevalece para conocimiento humano.
 - Consultar el grafo existente antes de reconstruirlo. Actualizar [[Graphify]] durante
   un cierre confirmado o cuando el usuario lo solicite explícitamente.
-- Mantener `Sesiones/En curso.md` con [[Plantilla - Sesión de proyecto]] y convertirla
-  en la nota fechada al cerrar; no conservar dos versiones divergentes.
+- Mantener `Sesiones/En curso.md` con [[Plantilla - Sesión de proyecto]], dentro de su
+  presupuesto, y convertirla en la nota fechada al cerrar.
 - Usar siempre los `data_source_id` canónicos documentados; nunca seleccionar una
   fuente de [[Notion]] únicamente por nombre.
 - Los proyectos externos usan el comando central `scripts/notion.py close-session`;
@@ -23,6 +23,10 @@ carpeta raíz `Notion`. No pueden contradecir las reglas globales.
   los llamadores. Preferir stdlib y patrones existentes; no añadir dependencias.
 - Antes del borrador de cierre, revisar el diff con `ponytail-review` y aplicar solo
   simplificaciones que conserven seguridad, errores, contratos y pruebas.
+- No cargar por defecto resumen, estado ni sesiones históricas: usar la cápsula y el
+  grafo, y abrir esas notas solo por evidencia.
+- El resumen enviado a Notion describe únicamente trabajo y resultado; el detalle
+  técnico permanece en Obsidian.
 
 ## Punteros
 

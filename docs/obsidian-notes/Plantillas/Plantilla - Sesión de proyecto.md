@@ -1,54 +1,29 @@
 # Sesión [FECHA] — [VERSIÓN_O_EN_CURSO]
 
-> Estado: [EN CURSO / CERRADA]
+- Estado: [EN CURSO / CERRADA]
+- Inicio: `[TIMESTAMP]`
+- Fin: `[TIMESTAMP_O_PENDIENTE]`
+- Duración activa: `[MINUTOS / HORAS]`
+- Reto: [OBJETIVO_VERIFICABLE]
+- Resultado: [QUÉ SE LOGRÓ Y POR QUÉ IMPORTA]
 
-## Reto o compromiso
+## Decisiones
 
-[OBJETIVO_VERIFICABLE]
+- [SOLO DECISIONES DURABLES]
 
-## Resumen ejecutivo
+## Validación
 
-[QUÉ CAMBIÓ, POR QUÉ IMPORTA Y RESULTADO GENERAL]
+- [PRUEBAS, GRAFO Y SEGURIDAD EN UNA LÍNEA]
 
-## Tiempo
+## Continuidad
 
-- Inicio: `[TIMESTAMP_CON_ZONA]`
-- Fin: `[TIMESTAMP_CON_ZONA_O_PENDIENTE]`
-- Pausas excluidas: `[INTERVALOS_O_NINGUNA]`
-- Tiempo de pared: `[MINUTOS_TRANSCURRIDOS]`
-- Duración: `[MINUTOS_ACTIVOS]`
-- Horas: `[HORAS_DECIMALES]`
-
-## Acuerdos y decisiones
-
-- [ACUERDO, REGLA O DECISIÓN DURABLE]
-
-## Trabajo realizado
-
-- [CAMBIO RELEVANTE]
-
-## Validaciones y evidencia
-
-- Pruebas: `[RESULTADO]`
-- Graphify: `[ESTADO]`
-- Commit Git: `[HASH_O_PENDIENTE]`
-- Tag Git: `[TAG_O_PENDIENTE]`
-- Registro de Notion: `[URL_O_PENDIENTE]`
-- Seguridad: `[RESULTADO]`
-
-## Estado al cerrar
-
-[CAPACIDADES, BRECHAS Y RELACIÓN CON EL PROPÓSITO FINAL]
-
-## Pendientes y continuidad
-
-1. [SIGUIENTE PASO CONCRETO]
+- [SIGUIENTE PASO CONCRETO]
+- [BLOQUEO REAL, SI EXISTE]
 
 ## Conexiones
 
 - [[Proyectos/<Proyecto>/Resumen]]
 - [[Proyectos/<Proyecto>/Estado actual]]
-- [[Proyectos/<Proyecto>/Reglas]]
-- [[Notion]]
-- [[Obsidian]]
-- [[Graphify]]
+
+> Presupuesto: máximo 500 tokens estimados. Git, tag, horas y estado se registran como
+> propiedades en Notion; no duplicar inventarios de archivos ni la conversación.

@@ -42,6 +42,16 @@ incrementales en varios cambios reales.
 - **Claude Code:** `CLAUDE.md` apunta a `AGENTS.md` y `PROJECT_CONTEXT.md`, y exige
   consultar el grafo existente antes de reconstruirlo.
 
+## Recuperación con presupuesto
+
+- Orientación: consulta específica con `--budget 600`.
+- La salida selecciona fuentes; no sustituye leer el fragmento relevante.
+- Abrir como máximo tres fuentes por defecto.
+- Ampliar a `--budget 1200` solo cuando falten relaciones o evidencia.
+- Guardar resultados en memoria de Graphify únicamente para hallazgos no obvios que
+  evitarán repetir una investigación; no guardar cada consulta.
+- Las sesiones históricas y toda la bóveda no se cargan de forma preventiva.
+
 ## Política de actualización propuesta
 
 - Full extract: alta inicial, cambio mayor de estructura o reparación.

@@ -7,6 +7,13 @@ Se ejecuta por repositorio, inicialmente de forma manual. Sus resultados son
 regenerables y no sustituyen decisiones de [[Obsidian]]. Codex y Claude Code deberán
 consultar el grafo existente antes de solicitar una reconstrucción.
 
+## Uso eficiente
+
+Al iniciar una tarea se consulta con términos específicos y `--budget 600`. La salida
+sirve para escoger como máximo tres fuentes; no se carga el grafo completo ni toda la
+documentación. Solo se amplía a 1200 cuando la primera consulta no aporta evidencia
+suficiente.
+
 ## Extracción inicial de Notion
 
 Completada el 2026-06-28. Las métricas cambian con cada actualización; la fuente

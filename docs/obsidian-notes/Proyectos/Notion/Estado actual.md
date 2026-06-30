@@ -17,6 +17,8 @@
   creación de actividades relacionadas y reanudación de cierres parciales.
 - Regla [[Ponytail]] documentada para reducir código y contexto innecesarios en Codex,
   Claude Code y los prompts estándar.
+- Divulgación progresiva en V1.4 con presupuestos automáticos para arranque, cierre y
+  prompts.
 
 ## Qué todavía no hace
 
@@ -30,9 +32,9 @@
 
 La base, seguridad, memoria por proyecto y continuidad de IA están operativas. El
 registro de actividades es parcial y la automatización/reportería siguen pendientes.
-El siguiente paso es medir y reformar el flujo completo para reducir el contexto leído
-y producido por sesión, sin perder decisiones, continuidad ni trazabilidad. Después se
-retomarán la distribución del conector y los reportes.
+V1.4 redujo el contexto obligatorio sin alterar el modelo de trazabilidad:
+Graphify selecciona fuentes, Obsidian conserva detalle y Notion solo el resultado
+ejecutivo. Después se retomarán la distribución del conector y los reportes.
 
 ## Referencias
 
@@ -40,3 +42,4 @@ retomarán la distribución del conector y los reportes.
 - [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
 - [[Proyectos/Notion/Sesiones/2026-06-29 - V1.3]]
+- [[Proyectos/Notion/Sesiones/2026-06-29 - V1.4]]

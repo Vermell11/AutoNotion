@@ -1,40 +1,22 @@
 # Project Context
 
-## Identity
+- Proyecto: `Notion`
+- Versión publicada: `V1.4`
+- Propósito: base técnica del Sistema de Trazabilidad.
+- Estado: cliente Notion y cierre idempotente operativos; documentación humana en
+  Obsidian y relaciones técnicas en Graphify.
+- Último resultado: `V1.4` redujo el arranque a ≤1500 tokens estimados y el cierre a
+  ~738 mediante carga progresiva y presupuestos automáticos.
+- Reto actual: por definir.
+- Sesión abierta: ninguna.
 
-- Project name: `Notion` (derived from the repository root folder).
-- Current released version: `V1.3`.
-- Repository: https://github.com/Vermell11/AutoNotion
+## Recuperación
 
-## Canonical context
+1. Consultar `graphify-out/graph.json` con términos de la tarea y presupuesto 600.
+2. Abrir como máximo tres fuentes relevantes.
+3. Bóveda canónica:
+   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro`
+4. Cargar bajo demanda `Proyectos/Notion/{Reglas,Resumen,Estado actual}.md`, la sesión
+   histórica o las ADR señaladas por el grafo.
 
-- Global rules:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Reglas/Reglas globales del Sistema de Trazabilidad.md`
-- Project rules:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Reglas.md`
-- Project summary:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Resumen.md`
-- Current state:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Estado actual.md`
-- Last closed session:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Sesiones/2026-06-29 - V1.3.md`
-- Current open session: none.
-- Architecture:
-  `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Brain/Cerebro/Proyectos/Notion/Arquitectura/Arquitectura del sistema.md`
-
-## Technical graph
-
-- Graph data: `graphify-out/graph.json`
-- Audit report: `graphify-out/GRAPH_REPORT.md`
-- Interactive graph: `graphify-out/graph.html`
-- Query the existing graph before rebuilding it.
-
-## Required read order
-
-1. `AGENTS.md` or `CLAUDE.md`.
-2. This file.
-3. Obsidian global rules and project rules.
-4. Obsidian project summary, current state, last closed session, and
-   `Sesiones/En curso.md` only when it exists.
-5. Existing Graphify graph.
-6. Source code and repository documentation relevant to the task.
+Repositorio: https://github.com/Vermell11/AutoNotion
