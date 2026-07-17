@@ -1,15 +1,17 @@
 # Estado actual de Notion
 
-- Estado vivo: en curso.
-- Reto activo: salidas Excel/PDF seguras, cierre externo autónomo y memoria
-  operacional obligatoria en Obsidian.
-- Último resultado: contrato base, prompts y plantillas actualizados para que guardar
-  avance o cerrar exija memoria operacional antes de Notion.
+- Estado vivo: V1.5 cerrada y publicada.
+- Reto activo: reducir rutas locales para distribuir el conector central.
+- Último resultado: Excel/PDF legibles, cierre externo seguro y memoria operacional
+  obligatoria, con reconciliación idempotente de versiones en Notion.
 - Validación actual: `68` pruebas pasan, incluidas XLSX/PDF y append incierto; la API
   real exportó `4` fuentes/`134` filas; `git diff --check` y `compileall` pasan.
-- Siguiente paso: crear el commit final, ejecutar el preflight y presentar el borrador.
+- Siguiente paso: diseñar la distribución portable del conector sin duplicar secretos
+  ni configuración local.
 - Bloqueos: ninguno técnico.
-- Cierre/publicación: pendiente; no registrar en Notion todavía.
+- Cierre/publicación: V1.5 publicada en `main` y tag anotado `V1.5`, commit
+  `a1fc196769b537c16df686646c111178632bec7f`; proyecto Notion
+  `38dbc5d6-9357-818f-9a1f-dea29476dd71`; 3 actividades reconciliadas.
 
 ## Qué hace actualmente
 
@@ -73,3 +75,4 @@ ejecutivo. Después se retomarán la distribución del conector y los reportes.
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
 - [[Proyectos/Notion/Sesiones/2026-06-29 - V1.3]]
 - [[Proyectos/Notion/Sesiones/2026-06-29 - V1.4]]
+- [[Proyectos/Notion/Sesiones/2026-07-17 - V1.5]]

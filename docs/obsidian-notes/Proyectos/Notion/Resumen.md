@@ -36,7 +36,7 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
 - [[Proyectos/Notion/Roadmap]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
 - Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.4]]
-- Sesión en curso: [[Proyectos/Notion/Sesiones/En curso]] (`V1.5`).
+- Última sesión: [[Proyectos/Notion/Sesiones/2026-07-17 - V1.5]] (cerrada).
 - Decisiones: [[2026-06-28 Arquitectura inicial]] y
   [[2026-06-28 Trazabilidad por sesiones]], [[2026-06-28 Contexto de IA por proyecto]],
   [[2026-06-28 Confirmación explícita de cierre]] y
