@@ -211,13 +211,19 @@ class NotionClient:
                 )
 
     def query_data_source(
-        self, data_source_id: str, *, page_size: int = 100
+        self,
+        data_source_id: str,
+        *,
+        page_size: int = 100,
+        query_filter: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
-        """Recorre las páginas de una fuente de datos."""
+        """Recorre las páginas de una fuente, filtrando en el servidor si se indica."""
         cursor: str | None = None
         found: list[dict[str, Any]] = []
         while True:
             payload: dict[str, Any] = {"page_size": min(page_size, 100)}
+            if query_filter:
+                payload["filter"] = query_filter
             if cursor:
                 payload["start_cursor"] = cursor
             response = self._request(
@@ -320,6 +326,30 @@ class NotionClient:
                 "replace_content": {"new_str": markdown},
             },
         )
+
+    def append_page_markdown(self, page_id: str, markdown: str) -> dict[str, Any]:
+        """Agrega contenido al final de una página conservando lo anterior."""
+        if not markdown.strip():
+            raise ValueError("El contenido no puede estar vacío.")
+        return self._request(
+            "PATCH",
+            f"/pages/{page_id}/markdown",
+            {
+                "type": "insert_content",
+                "insert_content": {
+                    "content": markdown,
+                    "position": {"type": "end"},
+                },
+            },
+        )
+
+    def retrieve_page_markdown(self, page_id: str) -> str:
+        """Recupera el Markdown de una página para reconciliar escrituras."""
+        response = self._request("GET", f"/pages/{page_id}/markdown")
+        markdown = response.get("markdown")
+        if not isinstance(markdown, str):
+            raise NotionConnectionError("Notion no devolvió el Markdown de la página.")
+        return markdown
 
     def discover_data_sources(self, *, query: str | None = None) -> list[DataSourceSummary]:
         """Descubre todas las fuentes compartidas, recorriendo la paginación."""

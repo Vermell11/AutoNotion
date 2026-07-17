@@ -149,6 +149,17 @@ class NotionClientTests(unittest.TestCase):
             captured["replace_content"]["new_str"], "# Nuevo contenido"
         )
 
+    def test_retrieve_page_markdown_returns_markdown(self) -> None:
+        def opener(request, timeout):
+            self.assertTrue(request.full_url.endswith("/pages/page-1/markdown"))
+            return FakeResponse({"object": "page_markdown", "markdown": "# Contenido"})
+
+        result = NotionClient(self.settings, opener=opener).retrieve_page_markdown(
+            "page-1"
+        )
+
+        self.assertEqual(result, "# Contenido")
+
     def test_create_database_nests_initial_data_source_schema(self) -> None:
         captured = {}
 

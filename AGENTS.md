@@ -6,6 +6,7 @@
 - Nunca mostrar, documentar ni versionar secretos. Usar `NOTION_API_KEY`; `key.txt`
   solo mediante el cargador autorizado.
 - No usar Notion para reconstruir contexto rutinario.
+- Ninguna sesión se guarda o cierra sin actualizar memoria operacional en Obsidian.
 - Una tarea terminada no cierra la sesión. Solo una confirmación explícita autoriza
   escribir el cierre en Notion.
 - Cada cierre usa un tag Git anotado e inmutable.
@@ -28,8 +29,11 @@
 
 ## Memoria y cierre
 
-- Obsidian es canónico. La sesión contiene solo reto, resultado, decisiones, validación
-  y siguiente paso.
+- Obsidian es canónico. Antes de guardar o cerrar, actualizar sesión,
+  `Estado actual.md`, `Backlog.md`, `Roadmap.md` si cambió, decisiones durables y
+  `PROJECT_CONTEXT.md` solo si cambió contexto estable.
+- `Estado actual.md` expone reto activo, último resultado, validación, siguiente paso,
+  bloqueos y estado real para ControlP.
 - Documentar una ADR solo para decisiones durables con alternativas o consecuencias.
 - Ante una solicitud explícita de cierre, leer `docs/session-close.md`, mostrar el
   borrador y preguntar: “¿Confirmas que deseas cerrar y registrar esta sesión en

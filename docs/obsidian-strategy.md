@@ -12,6 +12,9 @@ lecciones y contexto durable deben terminar en Obsidian.
 - `Proyectos/<Proyecto>/Reglas.md`: convenciones locales que no contradicen las
   globales.
 - `Proyectos/<Proyecto>/Estado actual.md`: capacidades y brechas al objetivo final.
+- `Proyectos/<Proyecto>/Backlog.md`: pendientes accionables con prioridad, origen y
+  estado.
+- `Proyectos/<Proyecto>/Roadmap.md`: hitos, sprints o features futuras vigentes.
 - `Proyectos/<Proyecto>/Sesiones/`: memoria cronológica detallada.
 - `Proyectos/<Proyecto>/Arquitectura/`: arquitectura durable.
 - `Proyectos/<Proyecto>/Decisiones/`: índice o decisiones propias del proyecto.
@@ -31,6 +34,11 @@ Mientras una sesión está abierta se mantiene `Sesiones/En curso.md`. Al cierre
 confirmado se convierte en la nota fechada de la versión usando la plantilla común. La
 nota debe permitir reconstruir acuerdos, evidencia, estado y próximos pasos sin
 almacenar la conversación completa.
+
+La memoria operacional mínima debe quedar actualizada antes de guardar avance o cerrar:
+sesión, estado actual, backlog, roadmap si cambió, decisiones durables y cápsula solo
+si cambió contexto estable. Notion conserva el resumen transaccional; Obsidian conserva
+la continuidad completa para lectores como ControlP.
 
 ## Mantenimiento
 

@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 public/apikey/
+public/output/
+tmp/
 **/key.txt
 
 # Python

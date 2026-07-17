@@ -3,6 +3,37 @@
 Este contrato se aplica a proyectos nuevos y migrados. Las plantillas de entrada solo
 definen el modo y el contexto variable.
 
+## Bootstrap obligatorio
+
+Ante cualquier solicitud de integrar, migrar, guardar avance, cerrar o registrar:
+
+1. La carpeta actual es el proyecto y su nombre es el de la carpeta raíz.
+2. Leer `AGENTS.md`, `PROJECT_CONTEXT.md` y la sesión abierta en
+   `Proyectos/<Proyecto>/Sesiones/En curso.md` cuando exista.
+3. Consultar Graphify con términos de la tarea y `--budget 600` antes del código;
+   actualizarlo después de cambios relevantes.
+4. Usar el conector central de este contrato para Notion. Este carga
+   `NOTION_API_KEY` o `key.txt` mediante el cargador autorizado: nunca pedir al usuario
+   que entregue, copie, conecte o mencione credenciales.
+5. Antes de afirmar que Notion no está disponible, ejecutar `scripts/notion.py check`;
+   si el sandbox bloquea red o carpetas, solicitar el permiso nativo y reintentar.
+6. Ejecutar las operaciones directamente. No entregar comandos ni pedir al usuario
+   pegar salidas.
+
+Modos:
+
+- Proyecto nuevo: inspeccionar seguridad/Git; crear contrato, cápsula y Obsidian;
+  crear Graphify si falta; validar; mantener sesión abierta.
+- Migración: inspeccionar sin reconstruir historia; conservar trabajo y convenciones;
+  crear contrato, cápsula y Obsidian; actualizar Graphify; validar seguridad/pruebas;
+  crear el commit final y preparar V1.0.
+- Guardar avance: actualizar reto, resultado, decisiones, validación y siguiente paso
+  mediante el Contrato de Memoria Operacional; cambiar cápsula solo si varió contexto
+  estable; sin Notion, tag ni push.
+- Cerrar: memoria Obsidian → Graphify vigente → pruebas y `quality` separada → commit
+  → `close-project prepare` → confirmación → `close-project finalize` → Notion/push →
+  reconciliar anti-obsoletos y `activity_pages` (título, ID, URL).
+
 ## Constantes
 
 - Bóveda:
@@ -15,9 +46,30 @@ definen el modo y el contexto variable.
 ## Fuentes
 
 - Notion: sesiones, actividades y métricas.
-- Obsidian: contexto humano, decisiones y continuidad.
+- Obsidian: memoria operacional, contexto humano, decisiones y continuidad.
 - Graphify: índice técnico derivado.
 - Git: implementación y evidencia versionada.
+
+## Contrato de Memoria Operacional
+
+Ninguna sesión de Codex, Claude Desktop o Claude Code se considera guardada o cerrada
+si antes no actualizó Obsidian. Notion conserva el ledger; Obsidian, la continuidad
+que lectores como ControlP consumen sin reconstruir el chat.
+
+Antes de guardar avance, cambiar de herramienta o cerrar, la IA debe actualizar el
+paquete operacional mínimo:
+
+- Sesión: objetivo, reto activo, resultado, decisiones, validación, continuidad,
+  backlog, bloqueos, fuentes y estado real.
+- `Estado actual.md`: estado vivo, reto activo, último resultado, validación,
+  siguiente paso, bloqueos y cierre/publicación si aplica.
+- `Backlog.md`: tareas accionables, prioridad, origen y estado.
+- `Roadmap.md`: hitos, sprints o features cuando cambie alcance o cronograma.
+- `Decisiones/`: solo decisiones durables con alternativas, motivo e impacto.
+- `PROJECT_CONTEXT.md`: solo si cambió contexto estable.
+
+Verificación mínima: reto activo, siguiente paso, pendientes accionables y estado real
+sincronizado. Si una fuente no aplica, escribir `No aplica` y por qué.
 
 ## Contrato por proyecto
 
@@ -34,7 +86,8 @@ definen el modo y el contexto variable.
    Nunca simplificar seguridad, validación, prevención de pérdida de datos,
    accesibilidad, requisitos ni una prueba útil.
 6. Obsidian usa `Proyectos/<Proyecto>/` con `Resumen.md`, `Estado actual.md`,
-   `Reglas.md`, `Sesiones/`, `Decisiones/` y `Arquitectura/`.
+   `Backlog.md`, `Roadmap.md`, `Reglas.md`, `Sesiones/`, `Decisiones/` y
+   `Arquitectura/`.
 7. Las sesiones siguen [[Plantilla - Sesión de proyecto]] y no superan 500 tokens
    estimados. No copian la conversación ni inventarios disponibles en Git.
 8. Graphify se extrae una vez por repositorio y después se actualiza por cambios
@@ -46,6 +99,14 @@ definen el modo y el contexto variable.
     autorizan el flujo de `docs/session-close.md`.
 11. Nunca mostrar, copiar ni versionar secretos. Los proyectos no implementan clientes
     Notion paralelos ni copian `key.txt`.
+12. En el cierre, la IA ejecuta las operaciones disponibles y solicita permisos con el
+    mecanismo nativo. No delega comandos ni pide al usuario copiar salidas de terminal.
+13. La migración completa se ejecuta en Claude Code local. Claude App puede guardar
+    continuidad y commits locales cuando `.git` sea escribible, pero no se presume que
+    tenga Graphify, autenticación GitHub ni red hacia Notion.
+14. `PROJECT_CONTEXT.md` no contiene el SHA actual, URLs de cierre, estado de push ni
+    métricas transitorias. Git conserva evidencia; Obsidian y Notion conservan el
+    estado dinámico.
 
 ## Presupuesto
 

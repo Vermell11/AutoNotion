@@ -24,13 +24,15 @@ AGENTS / CLAUDE -> PROJECT_CONTEXT -> En curso (si existe)
                   -> Ponytail -> código mínimo + verificación
 
 propuesta -> confirmación -> Obsidian/Graphify/pruebas -> commit final
-          -> close-session --dry-run -> tag local -> close-session
-          -> status=completed -> push main/tag
+          -> close-project prepare -> confirmación del borrador
+          -> close-project finalize -> tag local -> Notion completed
+          -> push atómico main/tag
 ```
 
 Notion no participa en la lectura rutinaria de contexto por IA. Conserva métricas,
-sesiones y datos compartibles por API. No existen aún sincronización automática,
-disparadores por cambios, reportes ni tareas programadas.
+sesiones y datos compartibles por API. El informe semanal lo consulta bajo demanda y
+genera un PDF local; no existen sincronización automática, disparadores por cambios
+ni tareas programadas.
 
 Una tarea completada no activa el cierre. Sin confirmación humana explícita después de
 mostrar el borrador, la sesión sigue abierta y no se escribe su fila en Notion.
@@ -47,6 +49,9 @@ cápsula derivada y compacta, no una nueva fuente de verdad.
 - `config.py`: resolución de credenciales y valores operativos.
 - `notion_client.py`: transporte, reintentos, errores y paginación.
 - `closing.py`: contrato, preflight, idempotencia y reanudación del cierre.
+- `project_close.py`: barreras Git y coordinación prepare/finalize.
+- `excel_export.py`: descubrimiento recursivo, normalización y libro por data source.
+- `weekly_report.py`: filtro semanal, indicadores y PDF determinista.
 - `session.py`: duración determinista entre timestamps con zona horaria.
 - `cli.py`: interfaz para lectura y cierre compartido.
 - `scripts/`: ejecución desde el checkout.

@@ -18,6 +18,8 @@ Proyectos/<Proyecto>/
 ├── Resumen.md
 ├── Reglas.md
 ├── Estado actual.md
+├── Backlog.md
+├── Roadmap.md
 ├── Sesiones/
 │   ├── En curso.md
 │   └── <Fecha> - <Versión>.md
@@ -33,10 +35,15 @@ consultan [[Graphify]] con presupuesto 600. Abren máximo tres fuentes. Reglas, 
 estado, ADR y sesiones históricas se cargan bajo demanda. [[Notion]] no participa en
 esa lectura.
 
+La memoria operacional vive en `Sesiones/En curso.md`, `Estado actual.md`, `Backlog.md`
+y `Roadmap.md`. Ninguna sesión se considera guardada o cerrada si esos archivos no
+reflejan primero el estado real, el reto activo, próximos pasos, pendientes y cambios
+de alcance que ControlP debe leer.
+
 `Sesiones/En curso.md` se mantiene durante el trabajo activo. Al cierre confirmado se
 convierte en la nota fechada de la versión usando [[Plantilla - Sesión de proyecto]].
-Debe permanecer bajo 500 tokens estimados y conservar solo reto, resultado, decisiones,
-validación y continuidad.
+Debe permanecer bajo 500 tokens estimados y conservar reto activo, resultado,
+decisiones, validación, continuidad y backlog generado.
 
 Cada `Resumen.md` de proyecto debe recordar que una tarea terminada no equivale a una
 sesión cerrada. La IA muestra primero el borrador de cierre y solicita confirmación

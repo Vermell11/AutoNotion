@@ -11,8 +11,9 @@ y registrar actividades. Ningún proyecto consumidor copia la API Key ni impleme
 cliente paralelo.
 
 El cierre usa un payload JSON sin secretos, un preflight real con `--dry-run` y la
-identidad `Nombre + Versión + Commit Git`. El SHA debe ser completo. Una ejecución
-posterior reutiliza la sesión existente y completa actividades pendientes.
+identidad de proyecto `Nombre`. El SHA debe ser completo como evidencia de la
+sesión. Una ejecución posterior reutiliza el proyecto existente y completa
+actividades pendientes.
 
 El orden obligatorio es:
 

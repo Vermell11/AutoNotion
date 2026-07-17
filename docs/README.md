@@ -9,6 +9,8 @@
 - [Riesgos](risks.md)
 - [Publicación segura en Git](git-publishing.md)
 - [Cierre compartido de sesiones en Notion](session-close.md)
+- [Exportación de Notion a Excel](excel-export.md)
+- [Informe semanal PDF](weekly-report.md)
 - [ADR-001: arquitectura inicial](decisions/ADR-001-arquitectura-inicial.md)
 - [ADR-002: trazabilidad por sesiones](decisions/ADR-002-trazabilidad-por-sesiones.md)
 - [ADR-003: contexto de IA por proyecto](decisions/ADR-003-contexto-ia-por-proyecto.md)

@@ -1,4 +1,4 @@
-"""Cierre idempotente de sesiones y actividades en Notion."""
+"""Cierre idempotente de proyectos y actividades en Notion."""
 
 from __future__ import annotations
 
@@ -25,6 +25,13 @@ class CloseTargets:
 
 
 @dataclass(frozen=True)
+class ActivityCloseRef:
+    title: str
+    id: str
+    url: str
+
+
+@dataclass(frozen=True)
 class CloseResult:
     status: str
     session_action: str
@@ -33,6 +40,7 @@ class CloseResult:
     activities_created: int
     activities_existing: int
     activities_planned: int
+    activity_pages: tuple[ActivityCloseRef, ...] = ()
 
 
 PROJECT_SCHEMA = {
@@ -126,12 +134,23 @@ def load_close_payload(path: Path) -> dict[str, Any]:
 def validate_close_payload(payload: dict[str, Any]) -> None:
     session = payload.get("session")
     activities = payload.get("activities", [])
+    quality = payload.get("quality")
     if not isinstance(session, dict):
         raise ClosePayloadError("El payload requiere un objeto session.")
     if not isinstance(activities, list) or not all(
         isinstance(activity, dict) for activity in activities
     ):
         raise ClosePayloadError("activities debe ser una lista de objetos.")
+    if not isinstance(quality, dict):
+        raise ClosePayloadError("El payload requiere un objeto quality.")
+    for field in ("offline_audit", "online_validation"):
+        if not isinstance(quality.get(field), str) or not quality[field].strip():
+            raise ClosePayloadError(f"quality.{field} debe ser texto no vacío.")
+    known_alerts = quality.get("known_alerts")
+    if not isinstance(known_alerts, list) or not all(
+        isinstance(alert, str) and alert.strip() for alert in known_alerts
+    ):
+        raise ClosePayloadError("quality.known_alerts debe ser una lista de textos.")
 
     missing = sorted(SESSION_REQUIRED - session.keys())
     if missing:
@@ -197,6 +216,14 @@ def validate_close_payload(payload: dict[str, Any]) -> None:
             f"Actividad {index}.description",
             MAX_ACTIVITY_DESCRIPTION_WORDS,
         )
+    reported = [
+        datetime.fromisoformat(activity["reported_at"]).replace(tzinfo=None)
+        for activity in activities
+    ]
+    if any(current >= following for current, following in zip(reported, reported[1:])):
+        raise ClosePayloadError(
+            "activities debe estar en orden cronológico estricto por reported_at."
+        )
 
 
 def _validate_number(value: dict[str, Any], field: str, prefix: str) -> None:
@@ -229,7 +256,19 @@ class SessionCloseService:
         self._preflight(payload)
         session = payload["session"]
         activities = payload.get("activities", [])
+        # Regla de títulos (Reglas.md de ControlP): las actividades se llaman
+        # "{proyecto} {versión} — {actividad}". El conector compone el prefijo
+        # SIEMPRE (el payload lleva el título sin prefijo); idempotente: si el
+        # título ya lo trae, no se duplica. Búsqueda y creación usan el título
+        # compuesto, así crea/reusa sigue encontrando actividades renombradas.
+        for activity in activities:
+            activity["title"] = _composed_activity_title(session, activity["title"])
         existing_session = self._find_session(session)
+        existing_activity_count = (
+            self._count_existing_activities(existing_session["id"], activities)
+            if existing_session
+            else 0
+        )
 
         if dry_run:
             return CloseResult(
@@ -238,25 +277,31 @@ class SessionCloseService:
                 session_page_id=existing_session.get("id") if existing_session else None,
                 session_url=existing_session.get("url") if existing_session else None,
                 activities_created=0,
-                activities_existing=(
-                    self._count_existing_activities(existing_session["id"], activities)
-                    if existing_session
-                    else 0
-                ),
+                activities_existing=existing_activity_count,
                 activities_planned=len(activities),
             )
 
         session_page = existing_session or self._create_session_reconciled(
             session, payload.get("markdown")
         )
+        if existing_session:
+            self._update_session_reconciled(session_page["id"], session)
         created = 0
         existing = 0
+        activity_pages: list[ActivityCloseRef] = []
         for activity in activities:
-            if self._find_activity(session_page["id"], activity):
+            activity_page = self._find_activity(session_page["id"], activity)
+            if activity_page:
                 existing += 1
-                continue
-            self._create_activity_reconciled(session_page["id"], activity)
-            created += 1
+            else:
+                activity_page = self._create_activity_reconciled(
+                    session_page["id"], activity
+                )
+                created += 1
+            activity_pages.append(_activity_close_ref(activity_page, activity["title"]))
+
+        if existing_session:
+            self._append_session_log_reconciled(session_page["id"], session)
 
         return CloseResult(
             status="completed",
@@ -266,6 +311,7 @@ class SessionCloseService:
             activities_created=created,
             activities_existing=existing,
             activities_planned=len(activities),
+            activity_pages=tuple(activity_pages),
         )
 
     def _preflight(self, payload: dict[str, Any]) -> None:
@@ -296,18 +342,12 @@ class SessionCloseService:
             self.targets.projects_data_source_id
         ):
             properties = page.get("properties", {})
-            if (
-                _plain(properties.get("Nombre", {}).get("title")) == session["name"]
-                and _plain(properties.get("Versión", {}).get("rich_text"))
-                == session["version"]
-                and _plain(properties.get("Commit Git", {}).get("rich_text"))
-                == session["git_commit"]
-            ):
+            if _plain(properties.get("Nombre", {}).get("title")) == session["name"]:
                 matches.append(page)
         if len(matches) > 1:
             raise ClosePayloadError(
-                "Notion contiene varias sesiones con la misma identidad "
-                "(Nombre, Versión, Commit Git)."
+                "Notion contiene varios proyectos con el mismo Nombre. "
+                "Consolida la base Proyectos antes de cerrar la sesión."
             )
         return matches[0] if matches else None
 
@@ -317,14 +357,32 @@ class SessionCloseService:
         try:
             return self.client.create_data_source_page(
                 data_source_id=self.targets.projects_data_source_id,
-                properties=_session_properties(session),
-                markdown=markdown if isinstance(markdown, str) and markdown.strip() else None,
+                properties=_session_properties(session, overwrite_summary=True),
+                markdown=_session_log_markdown(session),
             )
         except NotionError:
             reconciled = self._find_session(session)
             if reconciled:
                 return reconciled
             raise
+
+    def _update_session_reconciled(
+        self, session_page_id: str, session: dict[str, Any]
+    ) -> None:
+        self.client.update_page_properties(
+            session_page_id,
+            _session_properties(session, overwrite_summary=False),
+        )
+
+    def _append_session_log_reconciled(
+        self, session_page_id: str, session: dict[str, Any]
+    ) -> None:
+        marker = _session_log_marker(session)
+        if marker not in self.client.retrieve_page_markdown(session_page_id):
+            self.client.append_page_markdown(
+                session_page_id,
+                _session_log_markdown(session),
+            )
 
     def _find_activity(
         self, session_page_id: str, activity: dict[str, Any]
@@ -368,6 +426,17 @@ class SessionCloseService:
             raise
 
 
+def _activity_close_ref(page: dict[str, Any], title: str) -> ActivityCloseRef:
+    page_id = page.get("id")
+    url = page.get("url")
+    if not isinstance(page_id, str) or not page_id or not isinstance(url, str) or not url:
+        raise ClosePayloadError(
+            f"Notion no devolvió id y URL para la actividad {title!r}; "
+            "el cierre no puede reconciliarse."
+        )
+    return ActivityCloseRef(title=title, id=page_id, url=url)
+
+
 def _assert_schema(
     response: dict[str, Any], expected: dict[str, str], label: str
 ) -> None:
@@ -399,7 +468,9 @@ def _assert_option(
         )
 
 
-def _session_properties(session: dict[str, Any]) -> dict[str, Any]:
+def _session_properties(
+    session: dict[str, Any], *, overwrite_summary: bool
+) -> dict[str, Any]:
     properties: dict[str, Any] = {
         "Nombre": _title(session["name"]),
         "Fecha sesión": _date(session["session_date"]),
@@ -409,12 +480,15 @@ def _session_properties(session: dict[str, Any]) -> dict[str, Any]:
         "Horas": {"number": session["hours"]},
         "Reto o compromiso": _rich_text(session["challenge"]),
         "Resuelto": {"checkbox": session["resolved"]},
-        "Resumen": _rich_text(session["summary"]),
         "Versión": _rich_text(session["version"]),
         "Tag Git": _rich_text(session["git_tag"]),
         "Commit Git": _rich_text(session["git_commit"]),
         "Estado": {"status": {"name": session.get("status", "Done")}},
     }
+    if overwrite_summary or session.get("project_summary"):
+        properties["Resumen"] = _rich_text(
+            session.get("project_summary") or session.get("objective") or session["summary"]
+        )
     optional = {
         "scope": ("Ámbito", lambda value: {"select": {"name": value}}),
         "objective": ("Objetivo", _rich_text),
@@ -426,6 +500,27 @@ def _session_properties(session: dict[str, Any]) -> dict[str, Any]:
         if isinstance(value, str) and value.strip():
             properties[property_name] = builder(value)
     return properties
+
+
+def _session_log_markdown(session: dict[str, Any]) -> str:
+    return "\n".join(
+        [
+            _session_log_marker(session),
+            f"## Sesión {session['version']} — {session['session_date']}",
+            f"**Reto:** {session['challenge']}",
+            "",
+            f"**Resultado:** {session['summary']}",
+            "",
+            "**Evidencia:** "
+            f"tag `{session['git_tag']}`, "
+            f"commit `{session['git_commit']}`, "
+            f"{session['hours']} h.",
+        ]
+    )
+
+
+def _session_log_marker(session: dict[str, Any]) -> str:
+    return f"<!-- trazabilidad:{session['version']}:{session['git_commit']} -->"
 
 
 def _activity_properties(
@@ -440,6 +535,11 @@ def _activity_properties(
         "Status": {"status": {"name": activity["status"]}},
         "Proyecto": {"relation": [{"id": session_page_id}]},
     }
+
+
+def _composed_activity_title(session: dict[str, Any], title: str) -> str:
+    prefix = f"{session['name']} {session['version']} — "
+    return title if title.startswith(prefix) else f"{prefix}{title}"
 
 
 def _title(value: str) -> dict[str, Any]:

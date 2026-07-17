@@ -15,9 +15,9 @@ existen nombres duplicados, la selección canónica se realiza exclusivamente po
 
 ## Fuente canónica de actividades
 
-En la página contenedora del sistema, **Base de datos de trabajo** es un encabezado.
-La base incrustada inmediatamente posterior es **Reporte de Tickets**, cuya fuente
-operativa canónica es:
+En la página contenedora, el encabezado y la fuente operativa se llaman
+**Base de datos de trabajo**. La fuente antes denominada **Reporte de Tickets**
+conserva este identificador canónico:
 
 `033bc5d6-9357-83c6-b71e-07d61caa648f`
 
@@ -35,7 +35,7 @@ el ID de la página contenedora.
 
 ## Fuente canónica de sesiones por proyecto
 
-La base **Proyectos** conserva una fila nueva por cada sesión cerrada y está relacionada
+La base **Proyectos** conserva una sola fila canónica por proyecto y está relacionada
 bidireccionalmente con las actividades mediante `Proyecto` ↔ `Actividades`.
 
 - Database ID: `d0d752eb-27f7-4733-a4fb-342db85ab9bb`
@@ -44,9 +44,10 @@ bidireccionalmente con las actividades mediante `Proyecto` ↔ `Actividades`.
   `Duración minutos`, `Horas`, `Reto o compromiso`, `Resuelto`, `Resumen`, `Versión`,
   `Tag Git`, `Commit Git`, `Repositorio` y `Obsidian`.
 
-`Nombre` siempre procede de la carpeta raíz y puede repetirse. La identidad idempotente
-es `Nombre + Versión + Commit Git`; nunca se deduplica solo por nombre. Cada cierre
-registra reto, resolución, resumen y evidencia Git.
+`Nombre` siempre procede de la carpeta raíz y no debe repetirse en la tabla activa.
+La identidad idempotente del proyecto es `Nombre`; cada cierre actualiza ese registro,
+agrega una entrada al cuerpo de la página y crea/reusa actividades relacionadas con
+título `Proyecto Versión — actividad concreta`.
 
 ## Política de lectura y escritura
 

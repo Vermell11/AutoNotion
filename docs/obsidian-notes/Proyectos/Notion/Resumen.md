@@ -10,8 +10,12 @@ usa [[Graphify]] para comprender relaciones y arquitectura del código.
 También permite que Codex y Claude Code retomen el trabajo desde la última sesión
 documentada, calcula la duración de las sesiones y conserva evidencia mediante commits
 y tags Git. El cierre y registro de sesiones todavía es asistido y requiere
-confirmación humana. Aún no genera reportes, dashboards, correos ni sincronizaciones
-automáticas.
+confirmación humana. Ya genera un primer informe semanal PDF, pero aún no ofrece
+dashboards, correos ni sincronizaciones automáticas.
+
+El cierre externo usa dos fases coordinadas: conserva la confirmación humana y
+automatiza las barreras Git, Notion y publicación para impedir tags sobre un commit
+fallido.
 
 ## Propósito
 
@@ -28,9 +32,11 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
 - [[Reglas globales del Sistema de Trazabilidad]]
 - [[Proyectos/Notion/Reglas]]
 - [[Proyectos/Notion/Estado actual]]
+- [[Proyectos/Notion/Backlog]]
+- [[Proyectos/Notion/Roadmap]]
 - [[Proyectos/Notion/Arquitectura/Arquitectura del sistema]]
 - Última sesión cerrada: [[Proyectos/Notion/Sesiones/2026-06-29 - V1.4]]
-- Sesión en curso: ninguna.
+- Sesión en curso: [[Proyectos/Notion/Sesiones/En curso]] (`V1.5`).
 - Decisiones: [[2026-06-28 Arquitectura inicial]] y
   [[2026-06-28 Trazabilidad por sesiones]], [[2026-06-28 Contexto de IA por proyecto]],
   [[2026-06-28 Confirmación explícita de cierre]] y
@@ -48,6 +54,9 @@ Construir [[Sistema de Trazabilidad]] como ecosistema personal:
   en Notion sin copiar secretos e incorpora [[Ponytail]] como criterio portable.
 - V1.4 redujo el arranque estimado de ~6300 a ≤1500 tokens y el cierre de ~2425 a
   ~738 con cápsula compacta, Graphify limitado y presupuestos automáticos.
+- V1.5 implementa una exportación Excel de solo lectura con índice y una hoja por
+  fuente de datos, un informe semanal PDF desde `Base de datos de trabajo` y el
+  Contrato de Memoria Operacional para que Obsidian sea la continuidad completa.
 
 ## Continuidad para IA
 
@@ -58,6 +67,10 @@ cargan solo cuando aportan evidencia. No consulta Notion para contexto rutinario
 Una tarea terminada no cierra la sesión. La IA espera a que el usuario indique cuándo
 desea cargarla; después muestra el borrador y solicita confirmación explícita para
 cerrar y registrar en [[Notion]]. Sin ella, la sesión permanece abierta.
+
+Antes de guardar avance o cerrar, la IA actualiza la memoria operacional de Obsidian:
+sesión, estado actual, backlog, roadmap si cambió, decisiones durables y cápsula solo
+si cambió contexto estable. ControlP lee esa continuidad, no el chat original.
 
 Para tareas de código, después del contexto y el grafo se aplica [[Ponytail]] y se
 revisa la complejidad del diff antes del cierre.

@@ -17,7 +17,8 @@ tenía cliente ejecutable ni acceso autorizado al secreto central.
   credenciales ni código del cliente.
 - El payload es JSON validado y no contiene secretos.
 - `--dry-run` verifica conexión, esquemas e identidad sin escribir.
-- La identidad idempotente de sesión es `Nombre + Versión + Commit Git`.
+- La identidad idempotente del proyecto es `Nombre`; las sesiones se preservan como
+  bitácora acumulada y actividades relacionadas.
 - Las actividades se identifican por título y relación con la sesión.
 - Una ejecución posterior reanuda cierres parciales sin duplicar filas.
 - El tag no se publica hasta que Notion confirme el cierre.

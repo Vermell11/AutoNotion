@@ -50,6 +50,13 @@ Toda IA, incluyendo Codex y Claude Code, debe:
 - Se actualiza después de acuerdos o cambios relevantes, sin copiar la conversación.
 - Incluye reto, resumen ejecutivo, acuerdos, trabajo, validaciones, estado, pendientes,
   continuidad y conexiones.
+- Ninguna sesión de Codex, Claude Desktop o Claude Code se considera guardada o cerrada
+  si antes no actualizó la memoria operacional de Obsidian.
+- La memoria operacional mínima actualiza sesión, `Estado actual.md`, `Backlog.md`,
+  `Roadmap.md` cuando cambie alcance o cronograma, decisiones durables y
+  `PROJECT_CONTEXT.md` solo si cambió contexto estable.
+- `Estado actual.md` debe exponer reto activo, último resultado, validación,
+  siguiente paso, bloqueos y estado real para lectores como ControlP.
 - Al cerrar, se convierte en `Sesiones/<Fecha> - <Versión>.md`; no quedan dos copias
   divergentes.
 - Una nota histórica conserva su contexto original. Las decisiones posteriores se
@@ -88,20 +95,26 @@ Toda IA, incluyendo Codex y Claude Code, debe:
 ## Conector central de cierre
 
 - Todo proyecto usa el comando canónico:
-  `python3 "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/scripts/notion.py" close-session`.
+  `python3 "/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/scripts/notion.py" close-project`.
+- La IA ejecuta el flujo completo. No entrega comandos para que el usuario los copie ni
+  solicita pegar salidas; pide permisos mediante el diálogo nativo cuando haga falta.
 - El payload JSON sigue
   `/Users/andresortegacorpus/Library/Mobile Documents/com~apple~CloudDocs/code/Notion/config/session-close.example.json`,
   se guarda fuera del repositorio consumidor y nunca contiene secretos.
-- Después del commit final se usa su SHA completo y se ejecuta `--dry-run`.
+- Después del commit final se usa su SHA completo y se ejecuta la fase `prepare`.
 - Si el preflight falla, la sesión permanece pendiente y no se crea ni publica el tag.
-- Si pasa, se crea el tag local, se ejecuta el cierre sin `--dry-run` y se exige
-  `status=completed`.
-- Solo después se publican `main` y el tag. No se permiten commits posteriores al tag
-  para agregar URL o metadata de cierre.
-- Una segunda ejecución reconcilia la identidad `Nombre + Versión + Commit Git`,
-  reutiliza filas existentes y completa actividades faltantes.
+- Si pasa y el usuario confirma el borrador, la fase `finalize` revalida, crea el tag,
+  registra Notion y exige `status=completed`.
+- Solo después publica `main` y el tag con un push atómico. No se permiten commits
+  posteriores al tag para agregar URL o metadata de cierre.
+- Una segunda ejecución reconcilia el proyecto por `Nombre`, reutiliza la fila
+  existente y completa actividades faltantes.
 - El preflight valida opciones reales de select/status. Nunca se inventan categorías o
   estados; si el mapeo es ambiguo, se pide decisión humana.
 - Nunca copiar `key.txt`, pasar tokens por argumentos ni crear clientes alternativos.
+- La primera publicación puede partir de un remoto vacío: `finalize` crea `main` y el
+  tag anotado en el mismo push atómico.
+- La cápsula versionada nunca se autorreferencia con el SHA actual ni conserva estado
+  transitorio de publicación; esos datos van a Obsidian y propiedades de Notion.
 
 Relacionado con [[Obsidian]], [[Notion]], [[Graphify]] y [[Ponytail]].

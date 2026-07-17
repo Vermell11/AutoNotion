@@ -74,6 +74,7 @@ relacionada bidireccionalmente con las actividades.
 - [[Contrato base - Sistema de Trazabilidad]]
 - [[Prompt - Integrar proyecto nuevo al Sistema de Trazabilidad]]
 - [[Prompt - Migrar proyecto existente al Sistema de Trazabilidad]]
+- [[Prompt - Guardar avance de sesión]]
 - [[Plantilla - Sesión de proyecto]]
 
 ## Siguientes hitos

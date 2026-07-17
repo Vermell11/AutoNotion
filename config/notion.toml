@@ -5,7 +5,7 @@ timeout_seconds = 20
 max_retries = 3
 
 [activities]
-# “Base de datos de trabajo” is a heading; this is the embedded operational source.
+# Canonical operational source: “Base de datos de trabajo”.
 container_page_id = "388bc5d6-9357-8046-bc4f-d8f1e6405c0b"
 database_id = "ff1bc5d6-9357-82e3-9d7b-0121ab4efd73"
 data_source_id = "033bc5d6-9357-83c6-b71e-07d61caa648f"
@@ -15,6 +15,7 @@ datetime_property = "Date Reported"
 hours_property = "Horas"
 description_property = "Descripcion"
 status_property = "Status"
+module_property = "Modulo"
 project_relation_property = "Proyecto"
 
 [projects]
