@@ -235,9 +235,12 @@ class SessionCloseServiceTests(unittest.TestCase):
 
         with self.assertRaises(NotionConnectionError):
             self.service.execute(next_payload)
+        marker = f"trazabilidad:V1.1:{'a' * 40}"
+        self.client.markdown["projects-1"] = self.client.markdown[
+            "projects-1"
+        ].replace(marker, f"\\<!-- {marker} --\\>")
         result = self.service.execute(next_payload)
 
-        marker = f"<!-- trazabilidad:V1.1:{'a' * 40} -->"
         self.assertEqual(self.client.markdown[result.session_page_id].count(marker), 1)
         self.assertEqual(result.activities_existing, 1)
 

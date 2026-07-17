@@ -33,7 +33,7 @@
 - Divulgación progresiva en V1.4 con presupuestos automáticos para arranque, cierre y
   prompts.
 - Exportación Excel de fuentes visibles o bases descendientes de una página,
-  implementada y pendiente de validación contra la API real.
+  validada contra la API real con `4` fuentes y `134` filas legibles.
 - Informe semanal PDF de solo lectura desde `Base de datos de trabajo`, con
   indicadores, gráficos, avances y detalle de actividades.
 - Coordinador `close-project prepare/finalize`: bloquea árboles sucios, SHA o tags
@@ -60,11 +60,11 @@
 
 ## Avance al propósito final
 
-La base, seguridad, memoria por proyecto y continuidad de IA están operativas. El
-registro de actividades es parcial y la reportería está iniciada, aún sin automatizar.
-V1.4 redujo el contexto obligatorio sin alterar el modelo de trazabilidad:
-Graphify selecciona fuentes, Obsidian conserva detalle y Notion solo el resultado
-ejecutivo. Después se retomarán la distribución del conector y los reportes.
+La base, seguridad, memoria por proyecto y continuidad de IA están operativas. V1.5
+agregó reportería Excel/PDF, cierre Git+Notion en dos fases y memoria operacional
+obligatoria sin alterar el reparto: Graphify deriva relaciones, Obsidian conserva el
+detalle y Notion el resultado ejecutivo. El siguiente reto es distribuir el conector
+sin depender de rutas locales.
 
 ## Referencias
 

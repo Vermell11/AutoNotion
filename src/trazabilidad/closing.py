@@ -520,7 +520,7 @@ def _session_log_markdown(session: dict[str, Any]) -> str:
 
 
 def _session_log_marker(session: dict[str, Any]) -> str:
-    return f"<!-- trazabilidad:{session['version']}:{session['git_commit']} -->"
+    return f"trazabilidad:{session['version']}:{session['git_commit']}"
 
 
 def _activity_properties(
